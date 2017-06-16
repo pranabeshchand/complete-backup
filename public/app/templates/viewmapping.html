@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="mapping">
+        <div class="all-form">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="control-label">Connection:</label>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <select *ngIf="userDetails" class="form-control">
+                            <option selected>{{userDetails.username}}</option>
+                            </select>
+
+                            <select *ngIf="!userDetails" disabled class="form-control" id="sel1">
+                            <option selected>Please create a connection...</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="control-label">Object:</label>
+                    </div>
+                    <div class="col-md-5">
+                        <!--<div class="form-group">
+                            <select class="form-control" (change)="selectSalesObject($event)">
+                            <option *ngFor="let sales of salesObjects" [ngValue]="sales">{{sales.name}}</option>
+                            </select>
+                        </div>-->
+
+                        <div class="search-area">
+                            <div class="row">
+                                <div class="col-md-12 select-margin">
+                                    <div class="input-group stylish-input-group">
+                                        <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Quick Search..." >
+                                   <span class="input-group-addon">
+                                       <button type="submit">
+                                           <span class="glyphicon glyphicon-search"></span>
+                                       </button>
+                                   </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="select-list-area" *ngIf="salesObjects.length">
+                                <div class="select-list" *ngFor="let sales of salesObjects | dataFilter: searchText" (click)="selectSalesObject(sales.name)" [ngClass]="{'selected':sales.name == dataservice.currentSalesObj}">
+                                    <span >{{sales.label}}</span>
+                                </div>
+                            </div>
+                            <img src="app/images/loading.gif" *ngIf="!salesObjects.length" style="margin-left: 40%; margin-top: 10%; margin-bottom: 10%;"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="action-btn" style="float: right;">
+    <button type="button" class="btn btn-default salesforce-button3" [disabled]="!dataservice.currentSalesObj" (click)="dataservice.step = dataservice.step + 1">Next</button>
+</div>
+
+
+
+
+
+
+

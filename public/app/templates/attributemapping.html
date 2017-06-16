@@ -1,0 +1,336 @@
+<div [ngClass]="{'container':!dataservice.taskexport}">
+    <div *ngIf="!showClientAttributeList && records.length">
+        <div class="mapping">
+            <div class="attribute_margin">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="client_attribute_title">
+                            <h5>Mapping Name</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="client_attribute_title">
+                            <h5>Object</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-5 col-xs-12">
+                        <div class="Salesforce_attributes_title">
+                            <h5>Update at</h5>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="(clientAttribute.length && !dataservice.taskexport) || (salesAttribute.length && dataservice.taskexport)">
+                    <div class="row" *ngFor="let record of records; let k=index">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="radio">
+                                <input type="radio" id="radio+{{k}}" name="mappingRecord" value="{{k}}" [(ngModel)]="selectedRecord">
+                                <label for="radio+{{k}}">
+                                    <span>{{record.name}}</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <span>{{record.mapping.object}}</span>
+                        </div>
+                        <div class="col-md-5 col-sm-5 col-xs-12">
+                            <div class="form-group new-form">
+                                <div class="col-md-7 col-sm-5 col-xs-12" style="padding-left: 0px;padding-right: 0px;">{{record.updatedat}}</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img src="app/images/loading.gif" *ngIf="(!clientAttribute.length && !dataservice.taskexport) || (!salesAttribute.length && dataservice.taskexport)" style="margin-left: 45%;" />
+        </div>
+        <div class="action-btn" style="float: right;">
+            <button type="button" class="btn btn-default salesforce-button3" (click)="dataservice.step = dataservice.step - 1">Previous</button>
+            <button class="btn btn-default salesforce-button3" (click)="startMapping(selectedRecord); showClientAttributeList = true;" [disabled]="!selectedRecord"> Use Selected Mapping </button>
+            <button class="btn btn-default salesforce-button3" (click)="startMapping(); showClientAttributeList = true;"> Create New Mapping </button>
+        </div>
+    </div>
+    <div *ngIf="showClientAttributeList || !records.length">
+        <div class="mapping" *ngIf="!dataservice.taskexport">
+            <div class="attribute_margin">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="client_attribute_title">
+                            <h5>Client Attributes</h5>
+                        </div>
+                        <div class="quick-search-box" *ngIf="clientAttribute.length">
+                            <div class="row">
+                                <div class="col-sm-3 quick-search">
+                                    <div class="input-group stylish-input-group">
+                                        <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Quick Search..." >
+                                        <span class="input-group-addon">
+                                            <button type="submit">
+                                                <span class="glyphicon glyphicon-search"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-5 col-xs-12">
+                        <div class="client_attribute_title">
+                            <h5>Transformation Rule</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-4 col-xs-12">
+                        <div class="Salesforce_attributes_title">
+                            <h5>Salesforce Attributes</h5>
+                        </div>
+                    </div>
+                </div>
+                <div id="attribute-list">
+                    <div class="row" *ngFor="let obj of clientAttribute | dataFilter: searchText; let i=index;">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            {{obj.csvAttribute}}
+                        </div>
+                        <div class="col-md-4 col-sm-5 col-xs-12" style=" word-wrap: break-word; ">
+                           <!-- <button type="button" class="btn btn-default salesforce-button4" *ngIf="!obj.expressionValue || (obj.expressionValue && !obj.expressionValue.displayexpression)" [disabled]="!obj.salesAttribute"  [popover]="myPopover" (click)="transformAttribute(obj, i)" >Transform</button>-->
+                            <button type="button" class="btn btn-default salesforce-button4" *ngIf="!obj.expressionValue || (obj.expressionValue && !obj.expressionValue.displayexpression)"   [popover]="myPopover" (click)="transformAttribute(obj, i)" >Transform</button>
+                            <div *ngIf="obj.expressionValue && obj.expressionValue.displayexpression" style="margin-bottom: 30px;cursor: pointer;"  [popover]="myPopover" (click)="transformAttribute(obj, i)" >{{displayExpression(obj.expressionValue.displayexpression)}}</div>
+                        </div>
+                        <div class="col-md-5 col-sm-4 col-xs-12">
+                            <div class="form-group new-form" *ngIf="!obj.referenceObj">
+                                <div class="col-md-7 col-sm-5 col-xs-12" style="padding-left: 0px;padding-right: 0px;">
+                                    <select class="form-control" [(ngModel)]="obj.salesAttribute" (change)="addToSelectSalesObj(obj, i)">
+                                        <option value="">Select...</option>
+                                        <option *ngFor="let sob of salesAttribute; let j=index" [disabled]="isAlreadySelected(sob.name)" [selected] = "sob.name == obj.salesAttribute" [ngClass]="{'disabled-dropdown':isAlreadySelected(sob.name)}">{{sob.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group new-form" *ngIf="obj.referenceObj">
+                                <div class="col-md-5 col-sm-5 col-xs-12" style="padding-left: 0px;">
+                                    <select class="form-control" [(ngModel)]="obj.referenceObj" (ngModelChange)="generateAttributeList(obj)">
+                                        <option *ngFor="let listObj of salesListObjArray" [selected] = "listObj.name == obj.referenceObj">{{listObj.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5 col-sm-5 col-xs-12" style="padding-right: 0px;">
+                                   <!-- <select class="form-control" [(ngModel)]="obj.referenceAttribute"  [disabled]="!obj.list">
+                                        <option *ngFor="let list of obj.list" [disabled]="isAlreadySelected(obj.referenceObj+'.'+list.name)" [selected] = "initializeFields(list, obj, i)">{{list.name}}</option>-->
+                                        <select class="form-control" [(ngModel)]="obj.referenceAttribute" (change)="addToSelectSalesObj(obj, i)" [disabled]="!obj.list">
+                                         <option *ngFor="let list of obj.list" [disabled]="isAlreadySelected(obj.referenceObj+'.'+list.name)" [selected] = "list.name == obj.referenceAttribute">{{list.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img src="app/images/loading.gif" *ngIf="!clientAttribute.length" style="margin-left: 45%;" />
+            </div>
+            <div class="action-btn" style="float: right;">
+                <button type="button" class="btn btn-default salesforce-button3" *ngIf="!showClientAttributeList" (click)="dataservice.step = dataservice.step - 1" style=" margin-bottom: 0px; ">Previous</button>
+                <button class="btn btn-default salesforce-button3" *ngIf="showClientAttributeList" (click)="showClientAttributeList = false" style=" margin-bottom: 0px; "> Previous </button>
+                <button class="btn btn-default salesforce-button3" [disabled]="!mappingModified" data-toggle="modal" data-target="#continue" style=" margin-bottom: 0px; "> Continue </button>
+               <!-- <button class="btn btn-default salesforce-button3" [disabled]="!mappingModified" (click)="saveNewMapping()" style=" margin-bottom: 0px; "> Continue </button>-->
+            </div>
+        </div>
+        <div style=" border-bottom: 1px solid black;" *ngIf="dataservice.taskexport">
+            <div class="panel-heading">
+                <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#transform" style="cursor: pointer;" (click)="showTransform = !showTransform">
+                    <span data-toggle="collapse" data-parent="#accordion" href="#transform" class="glyphicon glyphicon-chevron-right" *ngIf="!showTransform"></span>
+                    <span data-toggle="collapse" data-parent="#accordion" href="#transform" class="glyphicon glyphicon-chevron-down" *ngIf="showTransform"></span>
+                    Transformation
+                </h4>
+            </div>
+        </div>
+        <div id="transform" class="panel-collapse collapse mapping" *ngIf="dataservice.taskexport">
+            <div class="attribute_margin">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <div class="client_attribute_title">
+                            <h5>Salesforce Attributes</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-5 col-xs-12">
+                        <div class="client_attribute_title">
+                            <h5>Transformation Rule</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-4 col-xs-12">
+                        <div class="Salesforce_attributes_title">
+                            <h5>Client Attributes</h5>
+                        </div>
+                        <div class="quick-search-box">
+                            <div class="row">
+                                <div class="col-sm-3 quick-search">
+                                    <div class="btn-group">
+                                        <button class="btn btn-default salesforce-button4" type="button" style=" margin-bottom: 0px;">Change Name Styles</button>
+                                        <button class="btn btn-default salesforce-button4 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" type="button" style=" min-width: 50px; margin-bottom: 0px;" aria-haspopup="true" aria-expanded="false">
+                                            <span class="glyphicon glyphicon-chevron-down"></span>
+                                        </button>
+                                        <div class="dropdown-menu" style="padding: 5px 5px 0px;border-radius: 5px;left: 10px;">
+                                            <div class="radio">
+                                                <input type="radio" id="radio1" name="choice" (change)="formatName(1)">
+                                                <label for="radio1">
+                                                    <span>Camel Case</span>
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <input type="radio" id="radio2" name="choice" (change)="formatName(2)">
+                                                <label for="radio2">
+                                                    <span>Separate by Dash</span>
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <input type="radio" id="radio3" name="choice" (change)="formatName(3)">
+                                                <label for="radio3">
+                                                    <span>Separate by underscore</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="attribute-list">
+                    <div class="row" *ngFor="let obj of salesAttribute; let i=index;">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="form-group new-form">
+                                <div class="col-md-7 col-sm-5 col-xs-12" style="padding-left: 0px;padding-right: 0px;">{{obj.salesAttribute}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-5 col-xs-12">
+                            <button type="button" class="btn btn-default salesforce-button4" *ngIf="!obj.expressionValue || (obj.expressionValue && !obj.expressionValue.displayexpression)"  [popover]="myPopover" (click)="transformAttribute(obj, i)">Transform</button>
+                            <div *ngIf="obj.expressionValue && obj.expressionValue.displayexpression" style="margin-bottom: 30px;cursor: pointer;" [popover]="myPopover" (click)="transformAttribute(obj, i)" >{{displayExpression(obj.expressionValue.displayexpression)}}</div>
+                        </div>
+                        <div class="col-md-5 col-sm-4 col-xs-12">
+                            <div class="form-group new-form">
+                                <div class="col-md-7 col-sm-5 col-xs-12">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" [(ngModel)] = "obj.clientAttribute">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="action-btn" style="float: right;">
+                <button type="button" class="btn btn-default salesforce-button3" *ngIf="!showClientAttributeList" (click)="dataservice.step = dataservice.step - 1" style=" margin-bottom: 0px; ">Previous</button>
+                <button class="btn btn-default salesforce-button3" *ngIf="showClientAttributeList" (click)="showClientAttributeList = false" style=" margin-bottom: 0px; "> Previous </button>
+                <button class="btn btn-default salesforce-button3" [disabled]="!mappingModified" data-toggle="modal" data-target="#continue" style=" margin-bottom: 0px; "> Continue </button>
+            </div>-->
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="continue" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Continue...</h4>
+            </div>
+            <div class="modal-body">
+                <div class="continue-text">You have updated mapping information. Will you like to update the existing mapping or Create a new mapping?</div>
+                <div class="continue-btn">
+                    <button class="btn btn-default salesforce-button3" *ngIf="mappingObj && mappingObj.name" data-dismiss="modal" (click)="updateMapping(mappingObj.name)"> Update Mapping </button>
+                    <button class="btn btn-default salesforce-button3" data-dismiss="modal" (click)="saveNewMapping()"> Create New Mapping </button>
+                    <button class="btn btn-default salesforce-button3" data-dismiss="modal">Do Nothing</button>
+                </div>
+            </div>
+
+            <!--<div class="modal-body" *ngIf = "showalert">
+                <div class="continue-text"> One or more required SalesForce attributes are not mapped. please map the required attributes.</div>
+
+            </div>-->
+        </div>
+    </div>
+</div>
+<!--<div class="modal" id="errorModal" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog">
+        &lt;!&ndash; Modal content&ndash;&gt;
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Error...</h4>
+            </div>
+            <div class="modal-body">
+                <div class="continue-text">You have updated mapping information. Will you like to update the existing mapping or Create a new mapping?</div>
+
+            </div>
+
+        </div>
+    </div>
+</div>-->
+<!--<div class="modal fade"  id="continue" role="dialog">
+    <div class="modal-dialog">
+        &lt;!&ndash; Modal content&ndash;&gt;
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Continue...</h4>
+            </div>
+            <div class="modal-body">
+                <div class="continue-text"> One or more required SalesForce attributes are not mapped. please map the required attributes.</div>
+               &lt;!&ndash; <div class="continue-btn">
+                    <button class="btn btn-default salesforce-button3" *ngIf="mappingObj && mappingObj.name" data-dismiss="modal" (click)="updateMapping(mappingObj.name)"> Update Mapping </button>
+                    <button class="btn btn-default salesforce-button3" data-dismiss="modal" (click)="saveNewMapping()"> Create New Mapping </button>
+                    <button class="btn btn-default salesforce-button3" data-dismiss="modal">Do Nothing</button>
+                </div>&ndash;&gt;
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<popover-content #myPopover title="Attribute Transformation" [closeOnClickOutside]="true" [hidden]="!isReturnTypeSelected" [ngClass]="{'transformation-popover': isReturnTypeSelected}">
+    <span class="glyphicon glyphicon-remove close-popover" (click)="isReturnTypeSelected = false; errormessage='';"></span>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3"> Function Categories: </div>
+            <div class="col-sm-8">
+                <select class="form-control" [(ngModel)]="transformCategory.name" style="width: 40%; display: inline;"  (ngModelChange)="changeTransformCategory($event, transformCategory.index, transformCategory.clientAtr)">
+                    <option *ngFor="let category of formula[0].categories" [ngValue]="category.name" [selected] = "category.name == transformCategory.name">{{category.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"> Functions: </div>
+            <div class="col-sm-8">
+                <select class="form-control col-sm-3" *ngIf="transformCategory" style="width: 40%;" (ngModelChange)="addFunctionExpression($event, transformCategory.index, transformCategory.clientAtr || transformCategory.salesAtr)" [(ngModel)]="option">
+                    <option *ngFor="let option of transformCategory.options" [ngValue]="option">{{option.expressionValue}}</option>
+                </select>
+                <div *ngIf="!dataservice.taskexport && dataservice.csvHeader && dataservice.csvHeader.length > 1" class="col-sm-7">
+                    <div class="col-sm-6"> Client Attributes: </div>
+                    <select class="form-control" style="width: 40%;" (change)="addFunctionExpression($event, transformCategory.index, transformCategory.clientAtr)">
+                        <option *ngFor="let csvAtr of dataservice.csvHeader; let j=index" [ngValue]="csvAtr">{{csvAtr}}</option>
+                    </select>
+                </div>
+                <div *ngIf="dataservice.taskexport && salesAttribute && salesAttribute.length > 1" class="col-sm-7">
+                    <div class="col-sm-6"> Salesforce Attributes: </div>
+                    <select class="form-control" style="width: 40%;" (change)="addFunctionExpression($event, transformCategory.index, transformCategory.salesAtr)">
+                        <option *ngFor="let salesObj of salesAttribute; let j=index" [ngValue]="salesObj.name">{{salesObj.salesAttribute}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"> Expression: </div>
+            <div class="col-sm-8">
+                <textarea id="expression" class="form-control" rows="8" [(ngModel)]="value" (ngModelChange)="validateSyntex($event)"></textarea>
+                <div class="display-message" *ngIf="errormessage" style="color: red">{{errormessage}}</div>
+                <div class="display-message" *ngIf="message && !errormessage"><span class="glyphicon glyphicon-ok"></span>&nbsp;{{message}}</div>
+                <div class="transform-popover-btn">
+                    <button class="btn btn-default salesforce-button3" [disabled]="errormessage" type="button" (click)="submitExpression(transformCategory.index)">Submit</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</popover-content>
+
+<!--
+<div class="action-btn" style="float: right;" *ngIf="(showClientAttributeList || !records.length) && dataservice.taskexport">
+    <button type="button" class="btn btn-default salesforce-button3" *ngIf="!showClientAttributeList" (click)="dataservice.step = dataservice.step - 1" style=" margin-bottom: 0px; ">Previous</button>
+    <button class="btn btn-default salesforce-button3" *ngIf="showClientAttributeList" (click)="showClientAttributeList = false" style=" margin-bottom: 0px; "> Previous </button>
+    <button class="btn btn-default salesforce-button3" [disabled]="!mappingModified" data-toggle="modal" data-target="#continue" style=" margin-bottom: 0px; "> Continue </button>
+</div>-->

@@ -1,0 +1,349 @@
+<!--<button (click)="doLogin()"> Login </button>
+
+<div class="container" style="margin-top: 45px;">
+    <div class="wrapper">
+        <form [formGroup]="loginForm" class="form-signin" novalidate (ngSubmit)="doLogin()">
+            <div class="row text-center bol"><i class="fa fa-circle"></i></div>
+            <h3 class="form-signin-heading text-center">
+                <img class="login-logo" src="app/images/logo.png" alt=""/>
+            </h3>
+            <hr class="spartan">
+            <div class="input-group">
+                        <span class="input-group-addon" id="sizing-addon1">
+                            <i class="fa fa-user"></i>
+                        </span>
+                <input type="text" class="form-control" formControlName="username" placeholder="Username" required=""
+                       autofocus=""/>
+            </div>
+            <div class="input-group">
+                        <span class="input-group-addon" id="sizing-addon1">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                <input type="password" class="form-control" formControlName="password" placeholder="Password"
+                       required=""/>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" name="Submit" type="Submit">Login</button>
+        </form>
+    </div>
+</div>-->
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="/app/images/new-logo.png">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse data-navbar" id="myNavbar" style="float: right;">
+            <ul class="nav navbar-nav">
+                <li style="margin-top: 7px;"><a href="#">Get Help</a></li>
+                <li style="margin-top: 7px;"><a href="#">Contact</a></li>
+                <li style="margin-top: 7px;"><a href="#">Pricing</a></li>
+                <li style="padding-top: 16px;" class="loginWithButton">
+                    <!--<button type="button" class="btn btn-default salesforce-button" (click)="doLogin()">Login with Salesforce</button>-->
+                    <button (click)="loginWithSalesforce()" class="btn btn-default salesforce-button">Login with Salesforce</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="banner-image" style="padding-top: 7%;">
+    <!--<div class="row">-->
+        <!--<div class="col-md-12">-->
+            <!--<div class="first-contant">-->
+                <!--<h1>The data loader for Salesforce</h1>-->
+                <!--<p>Use the most popular data loader for Salesforce to quickly and securely import, export and  delete unlimited amounts of data for</p>-->
+                <!--<p>your enterprise. Get started quickly with our simple, 100% cloud solution.</p>-->
+                <!--<button type="button" class="btn btn-default salesforce-button3">Get Started</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+<div class="row" style="position: absolute;top:20%;">
+    <div class="col-md-12">
+        <div class="first-contant">
+            <h1>The data loader for Salesforce</h1>
+            <p>Use the most popular data loader for Salesforce to quickly and securely import, export and  delete unlimited amounts of data for</p>
+            <p>your enterprise. Get started quickly with our simple, 100% cloud solution.</p>
+            <button type="button" class="btn btn-default salesforce-button3">Get Started</button>
+        </div>
+    </div>
+</div>
+
+<div class="parallax"></div>
+<div class="middle-contant">
+    <section id="photo" class="brown">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 flipper">
+                <div class="image-align float-l">
+                    <img src="/app/images/image01.png" width="100%">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 flipper">
+                <div class="box-content">
+                    <h2>Simple and secure</h2>
+                    <span>Use your existing Salesforce credentials to log into dataloader.io
+                        without the hassle of downloading an application. dataloader.io’s
+                        uses oAuth 2.0 so you can get started quickly without
+                        compromising security.
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 flipper flipper-color-g">
+                <div class="box-content">
+                    <h2>Intelligent data mapping</h2>
+                    <span>Spend less time mapping data from the source file to the
+                          Salesforce fields with features such as auto-mapping, keyboard
+                          shortcuts and search filters.
+                    </span>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 flipper flipper-color-g">
+                <div class="image-align float-r">
+                    <img src="/app/images/image02.png" width="100%"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="photo">
+        <div class="row">
+            <div class="col-md-12>">
+            <div class="row light-color-bg">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 flipper">
+                    <div class="image-align float-l">
+                        <img src="/app/images/image03.png" width="100%">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 flipper">
+                    <div class="box-content">
+                        <h2>Simple and secure</h2>
+                        <span>Use your existing Salesforce credentials to log into dataloader.io
+                            without the hassle of downloading an application. dataloader.io’s
+                            uses oAuth 2.0 so you can get started quickly without
+                            compromising security.
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="dark-blue-color-bg">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 flipper">
+                <div class="box-content">
+                    <h2>Intelligent data mapping</h2>
+                    <span>Spend less time mapping data from the source file to the
+                          Salesforce fields with features such as auto-mapping, keyboard
+                          shortcuts and search filters.
+                    </span>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 flipper flipper-color-g">
+                <div class="image-align float-r">
+                    <img src="/app/images/image04.png" width="100%"></div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--<div class="container" style="text-align: center;margin-top: 8%;">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-4 col-sm-4">-->
+                <!--<div class="secure">-->
+                    <!--<div class="secure-icon">-->
+                        <!--<img src="/app/images/secure-icon.png">-->
+                    <!--</div>-->
+                    <!--<div class="secure-title"><h4>Simple and Secure</h4></div>-->
+                    <!--<div class="secure-content">-->
+                        <!--<p>-->
+                            <!--Use your existing Salesforce credentials-->
+                            <!--to log into dataloader.io without the-->
+                            <!--hassle of downloading an application.-->
+                            <!--dataloader.io’s uses oAuth 2.0 so you-->
+                            <!--can get started quickly without-->
+                            <!--compromising security.-->
+                        <!--</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-4 col-sm-4">-->
+                <!--<div class="secure">-->
+                    <!--<div class="secure-icon">-->
+                        <!--<img src="/app/images/mapping-icon.png">-->
+                    <!--</div>-->
+                    <!--<div class="secure-title"><h4>Intelligent data mapping</h4></div>-->
+                    <!--<div class="secure-content">-->
+                        <!--<p>-->
+                            <!--Spend less time mapping data from the-->
+                            <!--source file to the Salesforce fields with-->
+                            <!--features such as auto-mapping,-->
+                            <!--keyboard shortcuts and search filters.-->
+                        <!--</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-4 col-sm-4">-->
+                <!--<div class="secure">-->
+                    <!--<div class="secure-icon">-->
+                        <!--<img src="/app/images/connected.png">-->
+                    <!--</div>-->
+                    <!--<div class="secure-title"><h4>Connected</h4></div>-->
+                    <!--<div class="secure-content">-->
+                        <!--<p>-->
+                            <!--Import and export data directly from-->
+                            <!--Box, DropBox, FTP and SFTP-->
+                            <!--repositories quickly and easily.-->
+                        <!--</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row" style="margin-top: 60px;">-->
+            <!--<div class="col-md-4 col-sm-4">-->
+                <!--<div class="secure">-->
+                    <!--<div class="secure-icon">-->
+                        <!--<img src="/app/images/more-work.png">-->
+                    <!--</div>-->
+                    <!--<div class="secure-title"><h4>No more redundant work</h4></div>-->
+                    <!--<div class="secure-content">-->
+                        <!--<p>-->
+                            <!--Export related objects through a single pull, removing-->
+                            <!--the manual and redundant work required to pull multiple-->
+                            <!--datasets and reassociate them in Excel.-->
+                        <!--</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-4 col-sm-4">-->
+                <!--<div class="secure">-->
+                    <!--<div class="secure-icon">-->
+                        <!--<img src="/app/images/forgot.png">-->
+                    <!--</div>-->
+                    <!--<div class="secure-title"><h4>Schedule it and forgot it</h4></div>-->
+                    <!--<div class="secure-content">-->
+                        <!--<p>-->
+                            <!--Schedule tasks to import and export data automatically on an hourly, daily, weekly or monthly basis.-->
+                        <!--</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-4 col-sm-4">-->
+                <!--<div class="secure">-->
+                    <!--<div class="secure-icon">-->
+                        <!--<img src="/app/images/data-sync.png">-->
+                    <!--</div>-->
+                    <!--<div class="secure-title"><h4>Data Sync</h4></div>-->
+                    <!--<div class="secure-content">-->
+                        <!--<p>-->
+                            <!--Export related objects through a single pull, removing-->
+                            <!--the manual and redundant work required to pull multiple-->
+                            <!--datasets and reassociate them in Excel.-->
+                        <!--</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+<section id="photo" class="brown1">
+    <div class="bottom-contant">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 flipper1" style="background-color: #f2f2f2;height: 383px;">
+                <div class="box-content01">
+                    <h2>Looking for a more sophisticated connectivity
+                        solution?</h2>
+                       <span>dataloader.io is powered by MuleSoft’s Anypoint Platform, a unified solutions that
+                            connects Salesforce to anything. To learn more about how MuleSoft enable
+                            companies to connect faster at a significantly lower total cost, contact us
+                            today.
+                        </span>
+                    <div class="contact-button">
+                        <div class="row" style="margin-top: 5%;">
+                            <div class="col-md-3 col-sm-6 col-xs-5 learn-more" style="padding-left: 0px;">
+                                <button type="button" class="btn btn-default salesforce-button3" >Learn more</button>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-5" style="padding-left: 0px;">
+                                <button type="button" class="btn btn-default salesforce-button3" >Contact us</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 flipper1" style="background-color:#f2f2f2;padding-left: 0px;padding-right: 0px;">
+                <div class="left-image">
+                    <img src="/app/images/graphic.jpg" width="100%">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="row help-desk-box">
+        <div class="col-md-6">
+            <!--<div class="row">-->
+                <!--<div class="col-md-3">-->
+                    <!--<img src="/app/images/lower-icon1.png">-->
+                <!--</div>-->
+                <!--<div class="col-md-8">-->
+                    <!--<h4>We're here to help</h4>-->
+
+                   <!--<p> Want to learn more about our products or services? Just have a question? Let us know how we can help and we'll be in touch soon. If you're an existing customer with a technical issue, please use our Help Center for assistance.</p>-->
+
+                <!--</div>-->
+            <!--</div>-->
+            <table>
+                <tr>
+                    <td style="vertical-align: text-bottom;padding-top: 15px;">
+                        <img src="/app/images/wearehelp.png">
+                    </td>
+                    <td>
+                        <h4>We're here to help</h4>
+
+                        <p> Want to learn more about our products or services? Just have a question? Let us know how we can help and we'll be in touch soon.</p>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-6" style="border-left: 1px solid #8b8f97;">
+            <table>
+                <tr>
+                    <td style="vertical-align: text-bottom;padding-top: 15px;">
+                        <img src="/app/images/email-support.png">
+                    </td>
+                    <td>
+                        <h4>E-Mail Support</h4>
+
+                        <p>Need help with something? You'll not only get answers from our community through our forum.</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+<div id="footer" style="background-color: #2f2d2e;padding: 2%;">
+    <div class="container">
+        <div class="lower-item" style="color:#fff;">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="left-heading"><h5>About Us</h5></div>
+                    <div class="left-content">Comming Soon</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="middle-heading"><h5>Address</h5></div>
+                    <div class="middle-content">Comming Soon</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="right-heading"><h5>Subscribe for Email</h5></div>
+                    <input type="text" name="FirstName" placeholder="Email Address">
+                    <button type="button" class="btn btn-danger salesforce-button3">Verify</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,309 @@
+-- Works for Express
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-route.min.js"></script>
+  <script src="/js/app.js"></script>
+
+-- Works for Normal Angular
+  <script src="./../node_modules/angular/angular.js"></script>
+  <script src="./../node_modules/angular-route/angular-route.js"></script>
+  <script src="./../public/js/app.js"></script>
+
+
+
+
+current index is @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@0
+validation result is {
+  "valid": true,
+  "record": {
+    "username__c": "ashish",
+    "lastname__c": "abareja@gmail.com"
+  }
+}
+obj in insertIntoRelatedObjects TestImport__c
+data in insertIntoRelatedObjects [
+  {
+    "index": 0,
+    "records": {
+      "username__c": "ashish",
+      "lastname__c": "abareja@gmail.com"
+    }
+  }
+]
+in TestImport__c inserted [
+  {
+    "id": "a002800001621MnAAI",
+    "success": true,
+    "errors": []
+  }
+]
+insertedRecords is [
+  {
+    "id": "a002800001621MnAAI",
+    "success": true,
+    "errors": []
+  }
+]
+relation is testimport__c
+data is {
+  "Name": "aasheesh",
+  "Email__c": "abareja@gmail.co"
+}
+after relatedobject salesdata is [
+  {
+    "Name": "aasheesh",
+    "Email__c": "abareja@gmail.co",
+    "testimport__c": "a002800001621MnAAI"
+  },
+  {
+    "Name": "ankit",
+    "Email__c": "arawat@gmail.co"
+  }
+]
+current index is @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@1
+validation result is {
+  "valid": true,
+  "record": {
+    "username__c": "arawat",
+    "lastname__c": "arawat@gmail.com"
+  }
+}
+obj in insertIntoRelatedObjects TestImport__c
+data in insertIntoRelatedObjects [
+  {
+    "index": 1,
+    "records": {
+      "username__c": "arawat",
+      "lastname__c": "arawat@gmail.com"
+    }
+  }
+]
+in TestImport__c inserted [
+  {
+    "id": "a002800001621MsAAI",
+    "success": true,
+    "errors": []
+  }
+]
+insertedRecords is [
+  {
+    "id": "a002800001621MsAAI",
+    "success": true,
+    "errors": []
+  }
+]
+relation is testimport__c
+data is {
+  "Name": "aasheesh",
+  "Email__c": "abareja@gmail.co",
+  "testimport__c": "a002800001621MnAAI"
+}
+after relatedobject salesdata is [
+  {
+    "Name": "aasheesh",
+    "Email__c": "abareja@gmail.co",
+    "testimport__c": "a002800001621MsAAI"
+  },
+  {
+    "Name": "ankit",
+    "Email__c": "arawat@gmail.co"
+  }
+]
+current index is @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@0
+validation result is {
+  "valid": true,
+  "record": {
+    "first_name__c": "himanshu",
+    "last_name__c": "aggarwal"
+  }
+}
+obj in insertIntoRelatedObjects AnotherImport__c
+data in insertIntoRelatedObjects [
+  {
+    "index": 0,
+    "records": {
+      "first_name__c": "himanshu",
+      "last_name__c": "aggarwal"
+    }
+  }
+]
+in AnotherImport__c inserted [
+  {
+    "id": "a012800001GT0TCAA1",
+    "success": true,
+    "errors": []
+  }
+]
+insertedRecords is [
+  {
+    "id": "a012800001GT0TCAA1",
+    "success": true,
+    "errors": []
+  }
+]
+relation is anotherimport__c
+data is {
+  "Name": "aasheesh",
+  "Email__c": "abareja@gmail.co",
+  "testimport__c": "a002800001621MsAAI"
+}
+after relatedobject salesdata is [
+  {
+    "Name": "aasheesh",
+    "Email__c": "abareja@gmail.co",
+    "testimport__c": "a002800001621MsAAI",
+    "anotherimport__c": "a012800001GT0TCAA1"
+  },
+  {
+    "Name": "ankit",
+    "Email__c": "arawat@gmail.co"
+  }
+]
+current index is @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@1
+validation result is {
+  "valid": true,
+  "record": {
+    "first_name__c": "sourabh",
+    "last_name__c": "goyal"
+  }
+}
+obj in insertIntoRelatedObjects AnotherImport__c
+data in insertIntoRelatedObjects [
+  {
+    "index": 1,
+    "records": {
+      "first_name__c": "sourabh",
+      "last_name__c": "goyal"
+    }
+  }
+]
+in AnotherImport__c inserted [
+  {
+    "id": "a012800001GT0THAA1",
+    "success": true,
+    "errors": []
+  }
+]
+insertedRecords is [
+  {
+    "id": "a012800001GT0THAA1",
+    "success": true,
+    "errors": []
+  }
+]
+relation is anotherimport__c
+data is {
+  "Name": "aasheesh",
+  "Email__c": "abareja@gmail.co",
+  "testimport__c": "a002800001621MsAAI",
+  "anotherimport__c": "a012800001GT0TCAA1"
+}
+after relatedobject salesdata is [
+  {
+    "Name": "aasheesh",
+    "Email__c": "abareja@gmail.co",
+    "testimport__c": "a002800001621MsAAI",
+    "anotherimport__c": "a012800001GT0THAA1"
+  },
+  {
+    "Name": "ankit",
+    "Email__c": "arawat@gmail.co"
+  }
+]
+current index is @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@0
+validation result is {
+  "valid": true,
+  "record": {
+    "Name": "aasheesh",
+    "Email__c": "abareja@gmail.co",
+    "testimport__c": "a002800001621MsAAI",
+    "anotherimport__c": "a012800001GT0THAA1"
+  }
+}
+obj in insertIntoRelatedObjects Account
+data in insertIntoRelatedObjects [
+  {
+    "index": 0,
+    "records": {
+      "Name": "aasheesh",
+      "Email__c": "abareja@gmail.co",
+      "testimport__c": "a002800001621MsAAI",
+      "anotherimport__c": "a012800001GT0THAA1"
+    }
+  }
+]
+in Account inserted [
+  {
+    "id": "0012800001IlYXyAAN",
+    "success": true,
+    "errors": []
+  }
+]
+insertedRecords is [
+  {
+    "id": "0012800001IlYXyAAN",
+    "success": true,
+    "errors": []
+  }
+]
+relation is undefined
+after relatedobject salesdata is [
+  {
+    "Name": "aasheesh",
+    "Email__c": "abareja@gmail.co",
+    "testimport__c": "a002800001621MsAAI",
+    "anotherimport__c": "a012800001GT0THAA1",
+    "id": "0012800001IlYXyAAN"
+  },
+  {
+    "Name": "ankit",
+    "Email__c": "arawat@gmail.co"
+  }
+]
+current index is @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@1
+validation result is {
+  "valid": true,
+  "record": {
+    "Name": "ankit",
+    "Email__c": "arawat@gmail.co"
+  }
+}
+obj in insertIntoRelatedObjects Account
+data in insertIntoRelatedObjects [
+  {
+    "index": 1,
+    "records": {
+      "Name": "ankit",
+      "Email__c": "arawat@gmail.co"
+    }
+  }
+]
+in Account inserted [
+  {
+    "id": "0012800001IlYY3AAN",
+    "success": true,
+    "errors": []
+  }
+]
+insertedRecords is [
+  {
+    "id": "0012800001IlYY3AAN",
+    "success": true,
+    "errors": []
+  }
+]
+relation is undefined
+after relatedobject salesdata is [
+  {
+    "Name": "aasheesh",
+    "Email__c": "abareja@gmail.co",
+    "testimport__c": "a002800001621MsAAI",
+    "anotherimport__c": "a012800001GT0THAA1",
+    "id": "0012800001IlYXyAAN"
+  },
+  {
+    "Name": "ankit",
+    "Email__c": "arawat@gmail.co",
+    "id": "0012800001IlYY3AAN"
+  }
+]
+

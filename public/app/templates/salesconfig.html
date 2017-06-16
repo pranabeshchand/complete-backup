@@ -1,0 +1,133 @@
+<header></header>
+
+
+<!--<div class="main-container ace-save-state" id="main-container">
+    <div class="main-content">
+
+        <div class="main-content-inner" style="width:80%; margin-left:20%">
+            <form [formGroup]="salesConfigForm" novalidate (ngSubmit)="saveSalesConfig()">
+                <div class="page-content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            &lt;!&ndash; PAGE CONTENT BEGINS &ndash;&gt;
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="container" style="margin-top: 20px;">
+                                        <div class="form-group row">
+                                            <label class="col-md-2 col-sm-2 col-xs-4 col-form-label">SalesForce
+                                                Login</label>
+
+                                            <div class=" col-md-6 col-sm-10 col-xs-8">
+                                                <input class="form-control" formControlName="salesforce_login"
+                                                       type="text" id="example-text-input">
+
+                                                <p *ngIf="salesConfigForm.controls.salesforce_login.invalid && !salesConfigForm.controls.salesforce_login.pristine || salesConfigForm.controls.salesforce_login.invalid && submitted"
+                                                   class="error">This field is required!</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-2 col-sm-2 col-xs-4 col-form-label">Username</label>
+
+                                            <div class="col-md-6 col-sm-10 col-xs-8">
+                                                <input class="form-control" formControlName="username" type="search"
+                                                       id="example-search-input">
+
+                                                <p *ngIf="salesConfigForm.controls.username.invalid && !salesConfigForm.controls.username.pristine || salesConfigForm.controls.username.invalid && submitted"
+                                                   class="error">This field is required!</p>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-2 col-sm-2 col-xs-4 col-form-label">Password</label>
+
+                                            <div class="col-md-6 col-sm-10 col-xs-8">
+                                                <input class="form-control" formControlName="password" type="password"
+                                                       id="example-email-input">
+
+                                                <p *ngIf="salesConfigForm.controls.password.invalid && !salesConfigForm.controls.password.pristine || salesConfigForm.controls.password.invalid && submitted"
+                                                   class="error">This field is required!</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-2 col-sm-2 col-xs-4 col-form-label"></label>
+
+                                            <div class="col-md-6 col-sm-6 col-xs-8">
+                                                <div class="action-button">
+                                                    <button type="button" class="btn btn-danger new-button"
+                                                            (click)="testsalesconnection()">Test Conectivity
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger new-button"
+                                                            type="submit">Save
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger new-button">Cancel
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                &lt;!&ndash; /.col &ndash;&gt;
+                            </div>
+                            &lt;!&ndash; /.row &ndash;&gt;
+                            &lt;!&ndash; PAGE CONTENT ENDS &ndash;&gt;
+                        </div>
+                        &lt;!&ndash; /.col &ndash;&gt;
+                    </div>
+                    &lt;!&ndash; /.row &ndash;&gt;
+                </div>
+                &lt;!&ndash; /.page-content &ndash;&gt;
+            </form>
+        </div>
+    </div>
+    <div class="loader" [hidden]="testcompleted"></div>
+</div>-->
+
+<div class="container">
+    <div class="view-map-container">
+        <form [formGroup]="salesConfigForm" novalidate (ngSubmit)="saveSalesConfig()">
+        <div class="mapping">
+            <div class="attribute_margin">
+                <div class="row">
+                    <div class="col-md-2 col-sm-3 col-xs-12">
+                        <label>
+                            SalesForce Login
+                        </label>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <input type="text" class="form-control" formControlName="salesforce_login">
+                        <p *ngIf="salesConfigForm.controls.salesforce_login.invalid && !salesConfigForm.controls.salesforce_login.pristine || salesConfigForm.controls.salesforce_login.invalid && submitted"
+                           class="error">This field is required!</p>
+                    </div>
+                    <div class="col-md-1 col-sm-2 col-xs-12">
+                        <label>
+                            Username
+                        </label>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                        <input type="text" class="form-control" formControlName="username">
+                        <p *ngIf="salesConfigForm.controls.username.invalid && !salesConfigForm.controls.username.pristine || salesConfigForm.controls.username.invalid && submitted"
+                           class="error">This field is required!</p>
+                    </div>
+                    <div class="col-md-1 col-sm-3 col-xs-12 password-margin">
+                        <label>
+                            Password
+                        </label>
+                    </div>
+                    <div class="col-md-2 col-sm-3 col-xs-12 password-margin">
+                        <input type="password" class="form-control" formControlName="password">
+                        <p *ngIf="salesConfigForm.controls.password.invalid && !salesConfigForm.controls.password.pristine || salesConfigForm.controls.password.invalid && submitted"
+                           class="error">This field is required!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="action-btn">
+            <button type="button" class="btn btn-default salesforce-button3" (click)="testsalesconnection()">Test Conectivity</button>
+            <button type="button" class="btn btn-default salesforce-button3" type="submit">Save</button>
+            <button type="button" class="btn btn-default salesforce-button3" >Cancel</button>
+        </div>
+            </form>
+    </div>
+</div>

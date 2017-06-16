@@ -1,0 +1,128 @@
+<!--
+<div class="main-container ace-save-state" id="main-container">
+
+
+    <div id="sidebar" class="sidebar  responsive  ace-save-state">
+
+        <ul class="nav nav-list">
+            <li class="">
+                <a routerLink="/configuration">
+                    <i class="fa fa-retweet" style="font-size: 18px;"></i>
+                    <span class="menu-text"> Configuration </span>
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="#" class="dropdown-toggle">
+                    <i class="fa fa-adjust" style="font-size: 18px;"></i>
+							<span class="menu-text">
+								Mapping
+							</span>
+
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+
+                <b class="arrow"></b>
+
+                <ul class="submenu">
+
+                    <li class="">
+                        <a routerLink="/objectmapping" routerLinkActive="">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Object Mapping
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="">
+                        <a routerLink="/attributemapping" routerLinkActive="">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Attribute Mapping
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="">
+                <a routerLink="/cloudsharing">
+                    <i class="fa fa-cloud" style="font-size: 18px;"></i>
+                    <span class="menu-text"> Cloud Sharing </span>
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+        </ul>
+        &lt;!&ndash; /.nav-list &ndash;&gt;
+
+    </div>
+</div>-->
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+    <ul class="nav nav-list">
+        <li class="">
+            <a routerLink="/configuration">
+                <i class="fa fa-retweet" style="font-size: 18px;"></i>
+                <span class="menu-text"> Configuration </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="fa fa-adjust" style="font-size: 18px;"></i>
+							<span class="menu-text">
+								Mapping
+							</span>
+
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+
+            <ul class="submenu">
+
+                <li class="">
+                    <a routerLink="/objectmapping" routerLinkActive="">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Object Mapping
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a routerLink="/attributemapping" routerLinkActive="">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        Attribute Mapping
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
+
+        <li class="">
+            <a routerLink="/cloudsharing">
+                <i class="fa fa-cloud" style="font-size: 18px;"></i>
+                <span class="menu-text"> Cloud Sharing </span>
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+    </ul>
+</div>
+
+<!-- Use any element to open the sidenav -->
+<span (click)="openNav()">open</span>
+
+<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+<div id="main">
+    ...
+</div>

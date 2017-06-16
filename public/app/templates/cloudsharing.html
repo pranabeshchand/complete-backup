@@ -1,0 +1,312 @@
+<div class="container">
+
+    <!--<ul class="option-container">
+        <li>
+            <div class="radio">
+                <input type="radio" value="csv" name="conn" (click)="myConnector(1)" checked id="radio1" >
+                &lt;!&ndash;<input type="radio" name="radio1" value="option1" checked="">&ndash;&gt;
+                <label for="radio1">
+                    CSV
+                </label>
+            </div>
+        </li>
+        <li>
+            <div class="radio">
+                <input type="radio" value="rdbms" name="conn" (click)="myConnector(0)" id="radio2">
+                <label for="radio2">
+                    Connect with RDBMS
+                </label>
+            </div>
+        </li>
+    </ul>-->
+    <div style="clear:both;"></div>
+
+    <div style="padding-top: 0px" [ngClass]="{'mapping':!dataservice.taskexport}" class="space-top-zero">
+        <div class="all-form1">
+            <div class="row">
+                <div role="tabpanel" class="">
+                    <div class="col-sm-3 left-bar">
+                        <ul class="nav nav-pills brand-pills nav-stacked" role="tablist">
+                            <li class="brand-nav" [ngClass]="{'active': activePanel == 'mycomputer'}"><a (click)="activePanel = 'mycomputer'; init();"><table><tr><td><i class="fa fa-home" aria-hidden="true"></i></td><td>My Computer</td></tr></table></a></li>
+                            <li class="brand-nav" [ngClass]="{'active': activePanel == 'dropbox'}"><a (click)="activePanel = 'dropbox'; init();"><table><tr><td><i class="fa fa-dropbox" aria-hidden="true"></i></td><td>DropBox</td></tr></table></a></li>
+                            <li class="brand-nav" [ngClass]="{'active': activePanel == 'google_drive'}"><a (click)="activePanel = 'google_drive'; init(); "><table><tr><td><img src="app/images/google-drive.svg" class="google-drive-img"></td><td>Google Drive</td></tr></table></a></li>
+                            <li class="brand-nav" [ngClass]="{'active': activePanel == 'box'}"><a (click)="activePanel = 'box'; init();"><table><tr><td><img src="app/images/box.svg" class="box-img"></td><td>Box</td></tr></table></a></li>
+                            <li class="brand-nav" [ngClass]="{'active': activePanel == 'ftp'}"><a (click)="activePanel = 'ftp'; init();"><table><tr><td><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></td><td>FTP</td></tr></table></a></li>
+                            <li class="brand-nav" [ngClass]="{'active': activePanel == 'sftp'}"><a (click)="activePanel = 'sftp'; init();"><table><tr><td><span class="glyphicon glyphicon-folder-close"></span></td><td>SFTP</td></tr></table></a></li>
+                            <li class="brand-nav" [ngClass]="{'active': activePanel == 'database'}"><a (click)="activePanel = 'database'; init();"><table><tr><td><i class="fa fa-database" aria-hidden="true"></i></td><td>Database</td></tr></table></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-9 right-item">
+                        <div class="tab-content">
+
+                            <div class="col-sm-12" id="box-display">
+                                <label *ngIf="activePanel != 'mycomputer'">Choose your connection:</label>
+                                <div *ngIf="activePanel == 'mycomputer'" style="text-align:center;">
+
+                                    <!--<ul>-->
+                                    <!--<li>-->
+                                    <!--<div class="radio">-->
+                                    <!--<input type="radio" value="csv" name="conn" (click)="myConnector(1)" checked id="radio1" >-->
+                                    <!--&lt;!&ndash;<input type="radio" name="radio1" value="option1" checked="">&ndash;&gt;-->
+                                    <!--<label for="radio1">-->
+                                    <!--CSV-->
+                                    <!--</label>-->
+                                    <!--</div>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                    <!--<div class="radio">-->
+                                    <!--<input type="radio" value="rdbms" name="conn" (click)="myConnector(0)" id="radio2">-->
+                                    <!--<label for="radio2">-->
+                                    <!--Connect with RDBMS-->
+                                    <!--</label>-->
+                                    <!--</div>-->
+                                    <!--</li>-->
+                                    <!--</ul>-->
+                                    <!--<div style="clear:both;"></div>-->
+
+                                    <!--<input type="radio" value="csv" name="conn" (click)="myConnector(1)" checked>Upload CSV<br/>-->
+                                    <!--<input type="radio" value="rdbms" name="conn" (click)="myConnector(0)">Connect with RDBMS-->
+                                    <div class="form-group" style="text-align:center;">
+                                        <div class="csv-file" style="text-align: center;padding-top: 5%;" *ngIf="!dataservice.taskexport">
+                                            <label for="csvFileInput" style="cursor: pointer;"><img src="/app/images/csv-image.svg" style="width: 80px;"></label>
+                                            <input type="file" id="csvFileInput" name="myfile" (change)="handleCsvFiles($event)" accept=".csv" style="display: none"/>
+                                        </div>
+                                        <h6 *ngIf="!dataservice.csvHeader.length && !dataservice.taskexport">Upload CSV</h6>
+                                        <h6 style="color: green;" *ngIf="dataservice.csvHeader.length"><b>{{dataservice.uploadedFileName}}</b> uploaded successfully !!!</h6>
+                                        <button *ngIf="dataservice.taskexport" style=" margin-top: 10%; " class="btn btn-default" (click)="downloadCsvFile(dataservice.currentSalesObj, dataservice.exportCsvData)">Download</button>
+                                    </div>
+                                    <label *ngIf="activePanel != 'mycomputer'">Choose your connection:</label>
+                                    <div class="tab-pane" *ngIf="showConnect == true"  style="text-align:center;">
+                                        <div role="tabpanel" >
+                                            <div class="form-group col-sm-8">
+                                                <select class="form-control">
+                                                    <option selected>Please create a connection...</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-sm-1 cloud-btn">
+                                                <span data-toggle="modal" data-target="#modalRdbms"><i class="fa fa-plus"></i></span>
+                                            </div>
+
+
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+
+                                <div role="tabpanel" class="tab-pane" *ngIf="activePanel == 'dropbox' || 'google_drive' || 'box'">
+                                    <div class="form-group col-sm-8 space-L">
+                                        <select *ngIf="connections[activePanel] && activePanel!='mycomputer'" class="form-control" id="sel1" [(ngModel)]="currentConnection" (change)="changeConnection($event)">
+                                            <option *ngFor="let user of connections[activePanel]; let i=index" [ngValue] = "user"> {{user.email || user.username}} - {{activePanel}}</option>
+                                        </select>
+
+
+                                        <select *ngIf="!connections[activePanel] && activePanel!='mycomputer' " disabled class="form-control">
+                                            <option selected>Please create a connection...</option>
+                                        </select>
+                                    </div>
+                                    <!--{{connections.mysql}}-->
+                                    <div class="form-group col-sm-1 cloud-btn">
+                                        <span (click)="createConnection()" *ngIf="activePanel!='ftp' && activePanel!='sftp' && activePanel!='mycomputer' && activePanel != 'database'"><i class="fa fa-plus"></i></span>
+                                        <!-- <span [popover]="myPopover" *ngIf="activePanel == 'ftp' || activePanel == 'sftp'" (click)="isButtonClicked = true"><i class="fa fa-plus"></i></span>-->
+                                        <span data-toggle="modal" data-target="#myModal" *ngIf="activePanel == 'ftp' || activePanel == 'sftp'"><i class="fa fa-plus"></i></span>
+                                        <span data-toggle="modal" data-target="#modalRdbms" *ngIf="activePanel == 'database'"><i class="fa fa-plus"></i></span>
+                                    </div>
+                                    <div class="form-group col-sm-1 cloud-btn" >
+                                        <span (click)="removeConnection()" *ngIf="activePanel!='mycomputer' && connections[activePanel]"><i class="fa fa-trash-o"></i></span>
+                                    </div>
+
+                                    <div class="folder-list col-sm-12" *ngIf="folders.length" style="margin: 10px; ">
+                                        <i class="fa fa-dropbox"  style="font-size: 20px;" (click)= "changeConnection()"></i>
+                                        <span *ngFor="let level of folderLevel; let i=index"><i class="fa fa-chevron-right" *ngIf="level.length > 0">&nbsp;</i><a *ngIf="level" class="folder-link" (click)="expandFolder(level)">{{level}}</a>&nbsp;</span>
+                                    </div>
+                                    <div  class="col-sm-12 inner-box">
+                                        <ul tabindex="1" *ngFor="let dir of folders">
+                                            <div class="folder-list" *ngIf="folders.length > 0" (click)="expandFolder(dir)"><i class="fa fa-folder-o"></i>&nbsp;&nbsp;{{dir.name}}</div>
+                                        </ul>
+                                        <ul tabindex="1" *ngFor="let file of files">
+                                            <div class="folder-list" *ngIf="files.length > 0" (click)="readFile(file)"><i class="fa fa-file-o"></i>&nbsp;&nbsp;{{file.name}}</div>
+                                        </ul>
+
+                                        <img src="app/images/loading.gif" *ngIf="showFileLoader" class="file-loader" style/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="action-btn" style="float: right;" *ngIf="!dataservice.taskexport">
+    <button type="button" class="btn btn-default salesforce-button3" (click)="dataservice.step = dataservice.step - 1">Previous</button>
+    <button type="button" class="btn btn-default salesforce-button3"  (click)="goToAttributeMapping()">Next</button>
+</div>
+
+<div class="action-btn" style="float: right;" *ngIf="dataservice.taskexport">
+    <!-- <button type="button" class="btn btn-default salesforce-button3" [disabled]="!dataservice.exportCsvData" (click)="saveCsvToDropbox(dataservice.currentSalesObj, dataservice.exportCsvData)" *ngIf="activePanel == 'dropbox'">Save</button>
+     <button type="button" class="btn btn-default salesforce-button3" [disabled]="!dataservice.exportCsvData" (click)="uploadGoogleDrive(dataservice.currentSalesObj, dataservice.exportCsvData)" *ngIf="activePanel == 'googledrive'">Save</button>-->
+</div>
+
+<!--<popover-content #myPopover title="FTP Connection" [closeOnClickOutside]="true" [ngClass]="{'transformation-popover': isButtonClicked}">-->
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Continue...</h4>
+            </div>
+            <div class="modal-body">
+                <div role="tabpanel" class="tab-pane" style="background:white">
+
+                    <form [formGroup]="configForm" novalidate class="panel-body">
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Host URL</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <input class="form-control" type="text" formControlName="host">
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Port</label>
+                                </div>
+                                <div class="col-md-2">
+                                    <input class="form-control" type="number" formControlName="port">
+                                </div>
+                            </div>
+                            <div class="row user-margin">
+                                <div class="col-md-3">
+                                    <label>username</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <input class="form-control" type="text" formControlName="username">
+                                </div>
+                            </div>
+                            <div class="row password-margin">
+                                <div class="col-md-3">
+                                    <label>password</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <input class="form-control" type="password" formControlName="password">
+                                </div>
+                            </div>
+
+                            <div class="row password-margin">
+                                <!-- <div class="col-md-3">
+                                     <label>password</label>
+                                 </div>-->
+                                <button class="btn btn-default salesforce-button3" type="button" (click)="saveFtpConnection()" data-dismiss="modal"> Save </button>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--</popover-content>-->
+
+<!-- RDBMS -->
+<div id="modalRdbms" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Database Connection</h4>
+            </div>
+            <div class="modal-body" style="padding-left: 0px;padding-right: 0px;">
+               <div role="tabpanel" class="tab-pane" style="background:white">
+                    <div class="alert alert-success" *ngIf="dblist.status == true">
+                       <strong>Success!</strong> Connection Establish.
+                   </div>
+                   <div class="alert alert-danger"  *ngIf="connError == true">
+                       <strong>Access denied!</strong>  Invalid database Info.
+                   </div>
+            <!--{{dblist.databases}}-->
+            <form [formGroup]="dbconnectionForm" novalidate class="panel-body">
+                <div class="row">
+                    <div class="row password-margin">
+                        <div class="col-md-3">
+                            <label>Database Server </label>
+                        </div>
+                        <div class="col-md-9">
+                            <select class="form-control"  formControlName="type">
+                                <option>Select Connection</option>
+                                <option value="mysql">Mysql</option>
+                                <option value="oracle">Oracle</option>
+                                <option value="sqlserver">Sql Server</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row user-margin">
+                        <div class="col-md-3" >
+                            <label>Host URL</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" formControlName="host" value="localhost">
+                        </div>
+                    </div>
+                    <div class="row user-margin">
+                        <div class="col-md-3">
+                            <label>Port</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input class="form-control" type="number" formControlName="port" value="3306">
+                        </div>
+                    </div>
+                    <div class="row user-margin">
+                        <div class="col-md-3">
+                            <label>User name</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" formControlName="user" value="root">
+                        </div>
+                    </div>
+                    <div class="row password-margin">
+                        <div class="col-md-3">
+                            <label>Password</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input class="form-control" type="password" formControlName="password" value="mim">
+                        </div>
+                    </div>
+                    <div class="row password-margin">
+                        <div class="col-md-3">
+                            <label>Database</label>
+                        </div>
+                        <div class="col-md-9">
+                            <select class="form-control"  formControlName="database" required>
+                                <option *ngFor = "let db of dblist.databases" [ngValue]= "db">{{db}}</option>
+                                  </select>
+                         </div>
+                    </div>
+
+                    <div class="row password-margin">
+                        <!-- <div class="col-md-3">
+                             <label>password</label>
+                         </div>-->
+                        <button class="btn btn-default salesforce-button3" type="button" (click)="testDbmsConnection()"><i class="fa fa-circle-o-notch fa-spin" *ngIf="testloader"></i> Test Connection </button>
+                        <button class="btn btn-default salesforce-button3" type="button" (click)="saveDbmsConnection()" [ngClass]='{disabled: isOn}' [disabled]="database"> Save </button>
+                    </div>
+                    <!--data-dismiss="modal"-->
+                </div>
+
+            </form>
+        </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END -->

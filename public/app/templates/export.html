@@ -1,0 +1,229 @@
+<header></header>
+<div class="container middle">
+    <div class="view-map-container">
+        <!--<div class="breadcrumb1 container">-->
+            <!--<a [ngClass]="dataservice.step == 1? 'active': ''"><span>Connection & Object</span></a>-->
+            <!--<a [ngClass]="dataservice.step == 2? 'active': ''"><span>Fields</span></a>-->
+            <!--&lt;!&ndash;<a [ngClass]="dataservice.step==3 ? 'active' : ''"><span>Transformation</span></a>-->
+            <!--<a [ngClass]="dataservice.step==4 ? 'active' : ''"><span>Export Summary</span></a>&ndash;&gt;-->
+            <!--<a [ngClass]="dataservice.step==3 ? 'active' : ''"><span>Run</span></a>-->
+        <!--</div>-->
+
+
+        <div class="stepwizard">
+            <div class="stepwizard-row">
+                <div class="stepwizard-step">
+                    <a [ngClass]="dataservice.step == 1 ? 'active': ''">
+                        <button type="button" class="btn-circle1">
+                            <div class="btn btn-default btn-circle"><span class="glyphicon glyphicon-object-align-horizontal"></span></div>
+                        </button>
+                    </a>
+                    <!--<p>Step 1</p>-->
+                    <h5>Connection & Object</h5>
+                </div>
+                <div class="stepwizard-step">
+                    <a [ngClass]="dataservice.step == 2 ? 'active': ''">
+                        <button type="button" class="btn-circle1">
+                            <div class="btn btn-default btn-circle"><span class="glyphicon glyphicon-file"></span></div>
+                        </button>
+                    </a>
+                    <!--<p>Step 2</p>-->
+                    <h5>Fields</h5>
+                </div>
+                <div class="stepwizard-step">
+                    <a [ngClass]="dataservice.step == 3 ? 'active': ''">
+                        <button type="button" class="btn-circle1" disabled="disabled">
+                            <div class="btn btn-default btn-circle"><span class="glyphicon glyphicon-transfer"></span></div>
+                        </button>
+                    </a>
+                    <!--<p>Step 3</p>-->
+                    <h5>Run</h5>
+                </div>
+            </div>
+        </div>
+
+        <viewmapping *ngIf = "dataservice.step == 1"></viewmapping>
+        <export2 *ngIf = "dataservice.step == 2"></export2>
+        <!--<attribmapping *ngIf = "dataservice.step == 3"> </attribmapping>
+        <exportsummary *ngIf = "dataservice.step == 4"> </exportsummary>-->
+        <exportsummary *ngIf = "dataservice.step == 3"> </exportsummary>
+       <!-- <div class="mapping">
+            <div class="export">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="search-area">
+                            <div class="sub-heading1">
+                                <h5>Fields</h5>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="input-group stylish-input-group">
+                                        <input type="text" class="form-control"  placeholder="Search" >
+                                        <span class="input-group-addon">
+                                            <button type="submit">
+                                                <span class="glyphicon glyphicon-search"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 burgur-icon">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                </div>
+                            </div>
+
+                            <div class="checkbox-area">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                        Account Partner ID
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                        Account Partner ID
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                        Account Partner ID
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                        Account Partner ID
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                        Account Partner ID
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                        Account Partner ID
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                        Account Partner ID
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="sub-heading1">
+                            <h5>Filters</h5>
+                            <div class="filter-form">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <select class="form-control">
+                                            <option>1</option>
+                                            <option>1</option>
+                                            <option>1</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select class="form-control">
+                                            <option>1</option>
+                                            <option>1</option>
+                                            <option>1</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select class="form-control">
+                                            <option>1</option>
+                                            <option>1</option>
+                                            <option>1</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="row add-icons">
+                                            <div class="col-md-6">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <i class="fa fa-refresh" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sub-heading">
+                            <h5>Order By</h5>
+                            <div class="filter-form">
+                                <div class="row">
+                                    <div class="col-md-6" style="padding-left: 0px;">
+                                        <select class="form-control">
+                                            <option>1</option>
+                                            <option>1</option>
+                                            <option>1</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-control">
+                                            <option>1</option>
+                                            <option>1</option>
+                                            <option>1</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select class="form-control">
+                                            <option>1</option>
+                                            <option>1</option>
+                                            <option>1</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sub-heading1" style="padding-bottom: 15px;margin-top: 20px;">
+                            <h5>SOQL Query</h5>
+                            <div class="filter-form">
+                                <div class="row">
+                                    <div class="col-md-2" style="padding-left: 0px;">
+                                        <button type="button" class="btn btn-danger salesforce-button4">Verify</button>
+                                    </div>
+                                    <div class="col-md-8">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <i class="fa fa-repeat" aria-hidden="true"></i> reset
+                                    </div>
+                                    <form role = "form">
+
+                                        <div class = "form-group">
+                                            <textarea class = "form-control" rows = "3" placeholder="text here...."></textarea>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <!--<div class="action-btn">
+            <button type="button" class="btn btn-default salesforce-button3" [disabled] = "step == 1" (click)="step = step - 1">Previous</button>
+            <button type="button" class="btn btn-default salesforce-button3" [disabled] = "step == 3"(click)="step = step + 1">Next</button>
+        </div>-->
+    </div>
+</div>

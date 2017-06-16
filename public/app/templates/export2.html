@@ -1,0 +1,196 @@
+ <div class="mapping" style="margin-left: 15px;">
+       <div class="export">
+           <div class="row">
+               <div class="col-md-4">
+                   <div class="search-area">
+                       <div class="sub-heading1">
+                           <h5>Fields</h5>
+                       </div>
+                       <div class="row">
+                           <div class="col-md-12 select-margin">
+                               <div class="input-group stylish-input-group">
+                                   <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Quick Search..." >
+                                   <span class="input-group-addon">
+                                       <button type="submit">
+                                           <span class="glyphicon glyphicon-search"></span>
+                                       </button>
+                                   </span>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="row" *ngIf="salesListObjArray">
+                           <div class="col-md-6 select-margin">
+                               <div class="checkbox">
+                                   <label>
+                                       <input type="checkbox" [checked]="showFieldName" (change)="showFieldName = !showFieldName">
+                                       <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                       Show Field Names
+                                   </label>
+                               </div>
+                           </div>
+                       </div>
+
+                       <div class="checkbox-area">
+                           <div class="checkbox parent-checkbox" *ngFor="let listObj of salesListObjArray | dataFilter: searchText; let n=index;">
+                               <label (click)="getChildList(listObj)" class="parent-label">
+                                   <span *ngIf="listObj.isCollapsed" class="glyphicon glyphicon-chevron-right"></span>
+                                   <span *ngIf="!listObj.isCollapsed" class="glyphicon glyphicon-chevron-down"></span>
+                                   {{listObj.name}}
+                               </label>
+                               <label *ngIf="listObj.list && !listObj.isCollapsed" style="float: right;" class="parent-label">
+                                   <input type="checkbox" [checked]="listObj.isChecked" (change)="selectAllFields(listObj, n)">
+                                   <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                   Select All
+                               </label>
+                               <span *ngIf="listObj.list && listObj.list.length == 0"><i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="font-size: 15px;float: right;"></i></span>
+                               <label *ngIf="listObj.referenceTo" class="field-name">
+                                   Reference to: {{listObj.referenceTo}}
+                               </label>
+                               <div *ngIf="!listObj.isCollapsed">
+                                   <div *ngFor="let sales of listObj.list; let m=index;" [ngClass]="{'checkbox': (!sales.isVisible || sales.isVisible == 'true')}">
+                                       <div *ngIf="!sales.isVisible || sales.isVisible == 'true'">
+                                           <label>
+                                               <input type="checkbox" [checked]="sales.isChecked == 'true'" (change)="dataQuery(sales, listObj, n, m)">
+                                               <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                               {{sales.label}}
+                                           </label>
+                                           <label *ngIf="showFieldName" class="field-name">
+                                               {{sales.name}}
+                                           </label>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           <img src="app/images/loading.gif" *ngIf="!salesListObjArray" style="margin-left: 30%; margin-top: 30%;" />
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-8" style="padding: 0px;">
+                   <div class="sub-heading1">
+                       <h5>Filters</h5>
+                       <div class="filter-form">
+                           <div class="row">
+                               <div class="col-md-4" style="padding-left: 0px;">
+                                   <select class="form-control" [(ngModel)]="selectedFilterSalesObj" (change)="salesObjForFilter(selectedFilterSalesObj)" [disabled]="!salesAttributeForFilter || (salesAttributeForFilter && !salesAttributeForFilter.length)">
+                                       <option *ngFor="let listObj of salesListObjArray" [ngValue]="listObj">{{listObj.name}}</option>
+                                   </select>
+                               </div>
+                               <div class="col-md-3">
+                                   <select class="form-control" [(ngModel)]="filterBySalesObj" (change)="filterBySalesAttribute()" [disabled]="!salesAttributeForFilter || (salesAttributeForFilter && !salesAttributeForFilter.length)">
+                                       <option *ngFor="let sales of salesAttributeForFilter" [ngValue]="sales" [selected]="filterBySalesObj.label == sales.label">{{sales.label}}</option>
+                                   </select>
+                               </div>
+                               <div class="col-md-2" style="padding-left: 0px;">
+                                   <select class="form-control" [(ngModel)]="selectedFilterObj" (change)="checkFilterValue()" [disabled]="!salesAttributeForFilter || (salesAttributeForFilter && !salesAttributeForFilter.length)">
+                                       <option *ngFor="let opt of filterOptions" [ngValue]="opt" [selected]="opt.filterName == selectedFilterObj.filterName">{{opt.filterName}}</option>
+                                   </select>
+                               </div>
+                               <div class="col-md-2" style="padding: 0px;">
+                                   <input type="text" class="form-control" [disabled]="isInputDisabled || !salesAttributeForFilter || (salesAttributeForFilter && !salesAttributeForFilter.length)" *ngIf="!filterBySalesObj || (filterBySalesObj && filterBySalesObj.type != 'datetime' && filterBySalesObj.type != 'date' && filterBySalesObj.type != 'boolean' && filterBySalesObj.type != 'picklist')" [(ngModel)]="inputFilterValue">
+                                   <input type="Date" class="form-control" [disabled]="isInputDisabled || !salesAttributeForFilter || (salesAttributeForFilter && !salesAttributeForFilter.length)" *ngIf="filterBySalesObj && (filterBySalesObj.type == 'datetime' || filterBySalesObj.type == 'date')" [(ngModel)]="inputFilterValue">
+                                   <select class="form-control" [(ngModel)]="inputFilterValue" *ngIf="filterBySalesObj && filterBySalesObj.type == 'boolean'">
+                                       <option value="true">True</option>
+                                       <option value="false">False</option>
+                                   </select>
+                                   <select class="form-control" [(ngModel)]="inputFilterValue" [disabled]="isInputDisabled" *ngIf="filterBySalesObj && filterBySalesObj.type == 'picklist'">
+                                       <option *ngFor="let pick of filterBySalesObj.picklistValues">{{pick.label}}</option>
+                                   </select>
+                               </div>
+                               <div class="col-md-1" style="padding: 0px;">
+                                   <div class="row add-icons">
+                                       <span class="col-md-6" style="cursor: pointer" (click)="createFilterQuery()">
+                                           <i class="fa fa-plus" aria-hidden="true"></i>
+                                       </span>
+                                       <span class="col-md-6" style="padding-left: 5px;" style="cursor: pointer" (click)="inputFilterValue = ''; filterErrorMsg = ''">
+                                           <i class="fa fa-refresh" aria-hidden="true"></i>
+                                       </span>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="filter-errorMsg" *ngIf="filterErrorMsg">{{filterErrorMsg}}</div>
+                       </div>
+                       <div class="filter-form" style="margin-top: 10px;" *ngFor="let list of dataservice.filterList; let k=index;">
+                           <div class="row">
+                               <div class="col-md-4" style="padding-left: 0px;">
+                                   <select class="form-control">
+                                       <option>{{list.field}}</option>
+                                   </select>
+                               </div>
+                               <div class="col-md-3">
+                                   <select class="form-control">
+                                       <option>{{list.name}}</option>
+                                   </select>
+                               </div>
+                               <div class="col-md-2" style="padding-left: 0px;">
+                                   <select class="form-control">
+                                       <option>{{list.type}}</option>
+                                   </select>
+                               </div>
+                               <div class="col-md-2" style="padding: 0px;">
+                                   <input type="text" class="form-control" [(ngModel)]="list.value" [disabled]="true">
+                               </div>
+                               <div class="col-md-1" style="padding: 0px;">
+                                   <div class="row add-icons">
+                                       <span class="col-md-6" style="cursor: pointer" (click)="removeFilter(k)">
+                                           <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                       </span>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="sub-heading">
+                       <h5>Order By</h5>
+                       <div class="filter-form">
+                           <div class="row">
+                               <div class="col-md-5" style="padding-left: 0px;">
+                                   <select class="form-control" [(ngModel)]="selectedOrderBySalesObj" (change)="salesObjForOrder(selectedOrderBySalesObj)" [disabled]="!salesAttributeForOrder || (salesAttributeForOrder && !salesAttributeForOrder.length)">
+                                       <option *ngFor="let listObj of salesListObjArray" [ngValue]="listObj">{{listObj.name}}</option>
+                                   </select>
+                               </div>
+                               <div class="col-md-5">
+                                   <select class="form-control" [(ngModel)]="orderBySalesAttr" (change)="orderBySalesAttribute()" [disabled]="!salesAttributeForOrder || (salesAttributeForOrder && !salesAttributeForOrder.length)">
+                                       <option value="">Select...</option>
+                                       <option *ngFor="let sales of salesAttributeForOrder" [ngValue]="sales">{{sales.label}}</option>
+                                   </select>
+                               </div>
+                               <div class="col-md-2">
+                                   <select class="form-control" [(ngModel)]="salesOrderType" (change)="orderBySalesAttribute()">
+                                       <option value="Asc">Asc</option>
+                                       <option value="Desc">Desc</option>
+                                   </select>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="sub-heading1" style="padding-bottom: 15px;margin-top: 20px;">
+                       <h5>SOQL Query</h5>
+                       <div class="filter-form">
+                           <div class="row">
+                               <div class="col-md-2" style="padding-left: 0px;">
+                                   <button type="button" class="btn btn-danger salesforce-button4" style="margin-left: 0px;" (click)="verifyQuery()">Verify</button>
+                               </div>
+                               <div class="col-md-8">
+                                   <div *ngIf="queryVerified == 'done'" style="margin-top: 5px; margin-left: -25px; color: green;"><span class="glyphicon glyphicon-ok"></span>&nbsp;Verified</div>
+                                   <div *ngIf="queryVerified == 'start'" style="margin-top: 5px; margin-left: -25px;"><i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="font-size: 24px;"></i></div>
+                               </div>
+                               <div class="col-md-2 add-icons">
+                                  <a (click)="resetQuery()" style="cursor: pointer;"><i class="fa fa-repeat"></i><span> Reset</span></a>
+                               </div>
+                               <!--<form role = "form">-->
+                                   <div class = "form-group">
+                                       <textarea rows="6" class = "form-control" [(ngModel)]="dataservice.exportQuery" placeholder="Enter query here...."></textarea>
+                                   </div>
+                               <!--</form>-->
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+ </div>
+
+ <div class="action-btn" style="float: right;">
+     <button type="button" class="btn btn-default salesforce-button3" (click)="dataservice.step = dataservice.step - 1">Previous</button>
+     <button type="button" class="btn btn-default salesforce-button3" [disabled]="dataservice.selectedFields && !dataservice.selectedFields.length" (click)="verifyQuery(dataservice.step + 1)">Next</button>
+ </div>

@@ -1,0 +1,222 @@
+<div class="container">
+    <div class="view-map-container">
+        <div class="mapping">
+            <div class="all-form" style="margin-top: 15px;text-align: left;padding: 20px;">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label">Name:</label>
+                        </div>
+                        <div class="col-md-5">{{dataservice.currentSalesObj}} Export</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label">Connection:</label>
+                        </div>
+                        <div class="col-md-5">{{userservice.UserDetails.username}}</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label">Object:</label>
+                        </div>
+                        <div class="col-md-5">{{dataservice.currentSalesObj}}</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label">Records:</label>
+                        </div>
+                        <div class="col-md-5">{{exportResultSize}}<i class="fa fa-spinner fa-pulse fa-3x fa-fw" *ngIf="!exportResultSize && exportResultSize != 0" style=" font-size: 24px; "></i></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label">Schedule Task:</label>
+                        </div>
+                        <!--<div class="col-md-5 export-summary-btn">
+                            <button type="button" *ngIf="mappingObj && mappingObj.name" class="btn btn-default salesforce-button3" (click)="updateMapping(mappingObj.name)">Update</button>
+                            <button type="button" *ngIf="mappingObj && !mappingObj.name" class="btn btn-default salesforce-button3" (click)="saveNewMapping(dataservice.currentSalesObj)">Save</button>
+                        </div>-->
+                        <div class="col-sm-10">
+                            <div class="col-sm-2" style="padding-left: 0px;">
+                                <select class="form-control" [(ngModel)]="scheduleType">
+                                    <option value="" selected>None</option>
+                                    <option value="Hourly">Hourly</option>
+                                    <option value="Daily">Daily</option>
+                                    <option value="Weekly">Weekly</option>
+                                    <option value="Monthly">Monthly</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3" *ngIf="scheduleType">
+                                <div class="col-sm-2" style=" padding: 7px; ">At:</div>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="time" [(ngModel)]="scheduleTime">
+                                </div>
+                            </div>
+                            <div class="col-sm-5" *ngIf="scheduleType">
+                                <select class="form-control">
+                                    <option value="1" selected="selected">San Francisco (GMT -08:00)</option>
+                                    <option value="2">Chicago (GMT -06:00)</option>
+                                    <option value="3">New York (GMT -05:00)</option>
+                                    <option value="4">Buenos Aires (GMT -03:00)</option>
+                                    <option value="5">London (GMT +00:00)</option>
+                                    <option value="6">Geneva (GMT +01:00)</option>
+                                    <option value="7">Mumbai (GMT +05:30)</option>
+                                    <option value="8">Hong Kong (GMT +08:00)</option>
+                                    <option value="9">Tokyo (GMT +09:00)</option>
+                                    <option value="10">Sydney (GMT +10:00)</option>
+                                    <option disabled="disabled">---------------------</option>
+                                    <option value="11">Accra (GMT +00:00)</option>
+                                    <option value="12">Addis Ababa (GMT +03:00)</option>
+                                    <option value="13">Adelaide (GMT +09:30)</option>
+                                    <option value="14">Amsterdam (GMT +01:00)</option>
+                                    <option value="15">Anchorage (GMT -09:00)</option>
+                                    <option value="16">Ankara (GMT +02:00)</option>
+                                    <option value="17">Athens (GMT +02:00)</option>
+                                    <option value="18">Atlanta (GMT -05:00)</option>
+                                    <option value="19">Auckland (GMT +12:00)</option>
+                                    <option value="20">Baghdad (GMT +03:00)</option>
+                                    <option value="21">Bangalore (GMT +05:30)</option>
+                                    <option value="22">Bangkok (GMT +07:00)</option>
+                                    <option value="23">Barcelona (GMT +01:00)</option>
+                                    <option value="24">Beijing (GMT +08:00)</option>
+                                    <option value="25">Beirut (GMT +02:00)</option>
+                                    <option value="26">Belgrade (GMT +01:00)</option>
+                                    <option value="27">Berlin (GMT +01:00)</option>
+                                    <option value="28">Bogota (GMT -05:00)</option>
+                                    <option value="29">Boston (GMT -05:00)</option>
+                                    <option value="30">Brussels (GMT +01:00)</option>
+                                    <option value="31">Bucharest (GMT +02:00)</option>
+                                    <option value="32">Budapest (GMT +01:00)</option>
+                                    <option value="33">Cairo (GMT +02:00)</option>
+                                    <option value="34">Calgary (GMT -07:00)</option>
+                                    <option value="35">Cape Town (GMT +02:00)</option>
+                                    <option value="36">Caracas (GMT -04:30)</option>
+                                    <option value="37">Casablanca (GMT +00:00)</option>
+                                    <option value="38">Copenhagen (GMT +01:00)</option>
+                                    <option value="39">Dallas (GMT -06:00)</option>
+                                    <option value="40">Denver (GMT -07:00)</option>
+                                    <option value="41">Detroit (GMT -05:00)</option>
+                                    <option value="42">Dhaka (GMT +06:00)</option>
+                                    <option value="43">Doha (GMT +03:00)</option>
+                                    <option value="44">Dubai (GMT +04:00)</option>
+                                    <option value="45">Dublin (GMT +00:00)</option>
+                                    <option value="46">Guatemala (GMT -06:00)</option>
+                                    <option value="47">Halifax (GMT -04:00)</option>
+                                    <option value="48">Hanoi (GMT +07:00)</option>
+                                    <option value="49">Harare (GMT +02:00)</option>
+                                    <option value="50">Havana (GMT -05:00)</option>
+                                    <option value="51">Helsinki (GMT +02:00)</option>
+                                    <option value="52">Honolulu (GMT -10:00)</option>
+                                    <option value="53">Houston (GMT -06:00)</option>
+                                    <option value="54">Islamabad (GMT +05:00)</option>
+                                    <option value="55">Istanbul (GMT +02:00)</option>
+                                    <option value="56">Jakarta (GMT +07:00)</option>
+                                    <option value="57">Jerusalem (GMT +02:00)</option>
+                                    <option value="58">Johannesburg (GMT +02:00)</option>
+                                    <option value="59">Kabul (GMT +04:30)</option>
+                                    <option value="60">Karachi (GMT +05:00)</option>
+                                    <option value="61">Kingston (GMT -05:00)</option>
+                                    <option value="62">Kuala Lumpur (GMT +08:00)</option>
+                                    <option value="63">Kuwait City (GMT +03:00)</option>
+                                    <option value="64">Kiev (GMT +02:00)</option>
+                                    <option value="65">La Paz (GMT -04:00)</option>
+                                    <option value="66">Lagos (GMT +01:00)</option>
+                                    <option value="67">Lima (GMT -05:00)</option>
+                                    <option value="68">Lisbon (GMT +00:00)</option>
+                                    <option value="69">Los Angeles (GMT -08:00)</option>
+                                    <option value="70">Madrid (GMT +01:00)</option>
+                                    <option value="71">Manila (GMT +08:00)</option>
+                                    <option value="72">Melbourne (GMT +10:00)</option>
+                                    <option value="73">Mexico City (GMT -06:00)</option>
+                                    <option value="74">Miami (GMT -05:00)</option>
+                                    <option value="75">Minsk (GMT +03:00)</option>
+                                    <option value="76">Montevideo (GMT -03:00)</option>
+                                    <option value="77">Montreal (GMT -05:00)</option>
+                                    <option value="78">Moscow (GMT +04:00)</option>
+                                    <option value="79">Nairobi (GMT +03:00)</option>
+                                    <option value="80">Nassau (GMT -05:00)</option>
+                                    <option value="81">New Delhi (GMT +05:30)</option>
+                                    <option value="82">New Orleans (GMT -06:00)</option>
+                                    <option value="83">Oslo (GMT +01:00)</option>
+                                    <option value="84">Ottawa (GMT -05:00)</option>
+                                    <option value="85">Paris (GMT +01:00)</option>
+                                    <option value="86">Perth (GMT +08:00)</option>
+                                    <option value="87">Prague (GMT +01:00)</option>
+                                    <option value="88">Reykjavik (GMT +00:00)</option>
+                                    <option value="89">Rio de Janeiro (GMT -03:00)</option>
+                                    <option value="90">Riyadh (GMT +03:00)</option>
+                                    <option value="91">Rome (GMT +01:00)</option>
+                                    <option value="92">Salt Lake City (GMT -07:00)</option>
+                                    <option value="93">Santiago (GMT -04:00)</option>
+                                    <option value="94">Santo Domingo (GMT -04:00)</option>
+                                    <option value="95">Sao Paulo (GMT -03:00)</option>
+                                    <option value="96">Seattle (GMT -08:00)</option>
+                                    <option value="97">Seoul (GMT +09:00)</option>
+                                    <option value="98">Shanghai (GMT +08:00)</option>
+                                    <option value="99">Singapore (GMT +08:00)</option>
+                                    <option value="100">Sofia (GMT +02:00)</option>
+                                    <option value="101">Stockholm (GMT +01:00)</option>
+                                    <option value="102">Taipei (GMT +08:00)</option>
+                                    <option value="103">Tallinn (GMT +02:00)</option>
+                                    <option value="104">Tehran (GMT +03:30)</option>
+                                    <option value="105">Toronto (GMT -05:00)</option>
+                                    <option value="106">Vancouver (GMT -08:00)</option>
+                                    <option value="107">Vienna (GMT +01:00)</option>
+                                    <option value="108">Warsaw (GMT +01:00)</option>
+                                    <option value="109">Washington DC (GMT -05:00)</option>
+                                    <option value="110">Zagreb (GMT +01:00)</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-5" style=" margin-top: 10px; padding-left: 0px;" *ngIf="scheduleType">
+                                <div class="col-sm-2" style=" padding: 7px; ">Starting:</div>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="Date" min="{{today}}" [(ngModel)]="startDate">
+                                </div>
+                            </div>
+                            <div class="col-sm-7" style=" margin-top: 10px;" *ngIf="scheduleType">
+                                <div class="col-sm-2" style=" padding: 7px; ">Ending:</div>
+                                <div class="col-sm-7">
+                                    <input class="form-control" type="Date" min="{{today}}" [(ngModel)]="endDate">
+                                </div>
+                                <div class="col-sm-2" (click)="endDate = ''" style="cursor: pointer; padding: 7px;">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <attribmapping> </attribmapping>
+    <div style=" border-bottom: 1px solid black;">
+        <div class="panel-heading">
+            <h4 class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#destination" style="cursor: pointer;" (click)="showDestination = !showDestination">
+                <span data-toggle="collapse" data-parent="#accordion" href="#destination" class="glyphicon glyphicon-chevron-right" *ngIf="!showDestination"></span>
+                <span data-toggle="collapse" data-parent="#accordion" href="#destination" class="glyphicon glyphicon-chevron-down" *ngIf="showDestination"></span>
+                Destination
+            </h4>
+        </div>
+    </div>
+    <div id="destination" class="checkbox panel-collapse collapse">
+        <label style="display: block;">
+            <input type="checkbox" [(ngModel)]="sendLocation">
+            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+            Send a copy of the results to this location
+        </label>
+        <cloudsharing class="mapping" *ngIf="sendLocation"></cloudsharing>
+    </div>
+</div>
+
+<div class="action-btn" style="float: right;">
+    <button type="button" class="btn btn-default salesforce-button3" (click)="dataservice.step = dataservice.step - 1">Previous</button>
+    <button type="button" *ngIf="mappingObj && mappingObj.name" class="btn btn-default salesforce-button3" (click)="updateMapping(mappingObj.name)">Update</button>
+    <button type="button" *ngIf="mappingObj && !mappingObj.name" class="btn btn-default salesforce-button3" (click)="saveNewMapping(dataservice.currentSalesObj)">Save</button>
+</div>

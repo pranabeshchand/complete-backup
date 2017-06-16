@@ -1,0 +1,10 @@
+[
+  {
+    "error": {
+      "RequiredField": "Required Fields are missing Name,SobjectType,IsActive"
+    }
+  },
+  {
+    "error": "REQUIRED_FIELD_MISSINGName,Email__c"
+  }
+]

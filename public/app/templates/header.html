@@ -1,0 +1,94 @@
+<nav class="navbar navbar-inverse">
+    <!--<div id="mySidenav" class="sidenav">-->
+        <!--<a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>-->
+        <!--<a routerLink="/import"><span class="glyphicon glyphicon-import"></span><span  class="menu-txt">Import</span></a>-->
+        <!--<a routerLink="/export"><span class="glyphicon glyphicon-export"></span><span  class="menu-txt">Export</span></a>-->
+        <!--<a href="#"><span class="glyphicon glyphicon-transfer"></span><span  class="menu-txt">Mappings</span></a>-->
+        <!--<a href="/tasklist"><span class="glyphicon glyphicon-list-alt"></span><span  class="menu-txt">Tasklist</span></a>-->
+        <!--<a href="" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span><span class="menu-txt">Logout</span></a>-->
+    <!--</div>-->
+
+    <!--<div id="main">-->
+        <!--<span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>-->
+    <!--</div>-->
+    <div class="container">
+        <div class="w3-sidebar w3-bar-block w3-card-2 w3-animate-right" style="display:none;right:0;" id="rightMenu">
+            <button style="border:none;font-size: 63px !important;font-family: sans-aserif;" (click)="closeRightMenu()" class="w3-bar-item w3-button w3-large w3-close mibs">&times;</button>
+            <div class="w3-bar-item w3-button w3-large w3-close w3-overlay" (click)="closeRightMenu()" style="cursor:pointer"></div>
+            <a class="w3-bar-item w3-button mibs" routerLink="/import">
+                <table>
+                    <tr>
+                        <td><span class="glyphicon glyphicon-import"></span></td>
+                        <td><span  class="menu-txt">Import</span></td>
+                    </tr>
+                </table>
+            </a>
+            <a class="w3-bar-item w3-button mibs" routerLink="/export">
+                <table>
+                    <tr>
+                        <td><span class="glyphicon glyphicon-export"></span></td>
+                        <td><span  class="menu-txt">Export</span></td>
+                    </tr>
+                </table>
+            </a>
+            <a class="w3-bar-item w3-button mibs" href="#">
+                <table>
+                    <tr>
+                        <td> <span class="glyphicon glyphicon-transfer"></span></td>
+                        <td><span  class="menu-txt">Mappings</span></td>
+                    </tr>
+                </table>
+            </a>
+            <a class="w3-bar-item w3-button mibs" href="/tasklist">
+                <table>
+                    <tr>
+                        <td> <span class="glyphicon glyphicon-list-alt"></span></td>
+                        <td> <span  class="menu-txt">Tasklist</span></td>
+                    </tr>
+                </table>
+
+            </a>
+            <a class="w3-bar-item w3-button mibs" href="" (click)="logout()">
+                <table>
+                    <tr>
+                        <td> <span class="glyphicon glyphicon-log-out"></span></td>
+                        <td> <span class="menu-txt">Logout</span></td>
+                    </tr>
+                </table>
+
+
+            </a>
+
+        </div>
+        <div class="header-logo">
+            <a class="w3-righ" href="#">
+                <img src="/app/images/new-logo.png">
+            </a>
+        </div>
+        <div class="w3-teal">
+            <button class="w3-button w3-teal w3-xlarge w3-right" (click)="openRightMenu()">&#9776;</button>
+        </div>
+        <!--<div class="navbar-header ">-->
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <!--<a class="navbar-brand" href="#">-->
+                <!--<img src="/app/images/new-logo.png">-->
+            <!--</a>-->
+        <!--</div>-->
+        <!--<div class="collapse navbar-right navbar-collapse data-navbar" id="myNavbar" style="float: right;">-->
+            <!--<ul class="nav navbar-nav">-->
+               <!--&lt;!&ndash; <li style="margin-top: 7px;"><a href="#">Get Help</a></li>-->
+                <!--<li style="margin-top: 7px;"><a href="#">Contact</a></li>-->
+                <!--<li style="margin-top: 7px;"><a href="#">Pricing</a></li>-->
+                <!--<li><a class="salesforce-margin" href="#">-->
+                    <!--<button type="button" class="btn btn-default salesforce-button" (click)="doLogin()">Login with Salesforce</button>-->
+                <!--</a></li>&ndash;&gt;-->
+            <!--</ul>-->
+        <!--</div>-->
+    </div>
+
+</nav>
+

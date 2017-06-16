@@ -1,0 +1,1 @@
+export {TimeAgo}  from "./src/timeago"

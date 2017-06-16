@@ -1,0 +1,124 @@
+#box-display{
+    margin-bottom: 0;
+    border-radius: 4px;
+    min-height:291px; !important;
+   /* max-height:500px; !important;*/
+    padding-left:10px; !important;
+    padding-top:5px; !important;
+    border-bottom: 0px;
+    border-right: 0px;
+    border-top: 0px;
+}
+
+.inner-box{
+    max-height: 240px;
+    overflow: auto;
+    margin-bottom: 10px;
+}
+
+#box-display>label{
+    margin:5px;
+}
+
+#outerbox-display{
+    padding-left:0px; !important;
+    padding-right:0px; !important;
+}
+
+.panel-heading>.panel-title{
+    cursor: pointer; !important;
+    font-size: 15px; !important;
+}
+
+.folder-list{
+    cursor: pointer; !important;
+}
+
+.folder-link {
+    color: black; !important;
+}
+
+.folder-list>span>a:hover {
+    color: black; !important;
+}
+
+.cloud-btn{
+    padding: 0px !important;
+    font-size: 20px;
+    margin: 5px;
+    cursor: pointer;
+    width: 5% !important;
+}
+
+.panel-default>.panel-heading:hover{
+    background-color:#E64545; !important;
+    color:white; !important;
+}
+
+.panel-default>.panel-heading:hover .fa-dropbox{
+    color: white;
+}
+
+.fa-cloud-download {
+    text-decoration: none; !important;
+    float:right; !important;
+}
+
+.file-loader{
+    width: 100px;
+    margin-left: 25%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    z-index:1100;
+}
+
+#uploadCSV{
+    line-height: 56px;
+    width: 260px;
+    margin-top: 70px;
+    margin-left: 170px;
+    background-color: lightgrey; !important;
+    border-color: lightgray; !important;
+    color: gray; !important;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.inner-box ul:focus{
+    background-color: #109ed9;
+    color: rgb(255, 255, 255);
+}
+
+.inner-box ul:hover:not(:focus){
+    background: lightgray;
+    color: #000000;
+}
+
+.inner-box ul{
+    padding-left: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.transformation-popover .popover {
+    min-width: 100% !important;
+    height: 100%;
+    margin: 0px !important;
+    top: 0px !important;
+    left: 0px !important;
+    border-radius: 0px;
+}
+
+.transformation-popover .arrow {
+    display: none !important;
+}
+
+.transformation-popover .container {
+    margin: 15px 50px;
+}
+
+.transformation-popover .popover-title {
+    text-align: left;
+    padding: 15px 0px 15px 78px !important;
+    font-weight: bolder;
+}

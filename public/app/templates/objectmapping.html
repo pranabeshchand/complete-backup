@@ -1,0 +1,154 @@
+<header></header>
+<sideMenu></sideMenu>
+<div class="main-content">
+    <div class="main-content-inner" style="margin-left: 20%;">
+        <div class="page-content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="container">
+                        <div class="page-title">
+                            <h3>Object Mapping</h3>
+
+                            <p>
+                               You can map your local mongo db collections referred by <b>Client Objects</b> to <b>Salesforce objects </b>. <br> <br>
+
+                                1. Select one <b>client object </b> at a time and at the same time you can map this to multiple
+                                   <b>salesforce objects </b>. <br> <br>
+                                2. Client objects which are mapped will be marked as  &nbsp; <i class="fa fa-check"></i>
+                            </p>
+
+                        </div>
+
+                        <div id="wrapper">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3>Client Objects</h3>
+                                </div>
+                                <div class="col-md-6" style="margin-left: -75px;">
+                                    <h3>Salesforce Objects</h3>
+                                </div>
+                            </div>
+
+                            <div class="scrollbar" id="style-3" style="margin-left: 0px;margin-top: 20px;">
+                                <div class="force-overflow">
+                                    <div class="col-md-3 col-sm-4 col-xs-6"
+                                         style="width: 100%;padding-left: 0px;padding-right: 0px;">
+                                        <div class="main_div">
+                                            <div class="div{{i+1}}" *ngFor="let mongoObj of mongoObjects; let i=index;">
+                                                <input type="radio" name="radio1" id=radio{{i}} value="{{ mongoObj }}"
+                                                      (change)="mapToSales(mongo.value)" #mongo [checked]="mongoObj == currentMongoObj">
+                                                <label for=radio{{i}}>
+                                                    {{ mongo.value }}
+                                                    <i class="fa fa-check new-icon" *ngIf="setmarked(mongoObj)"></i>
+                                                </label>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="loader" [hidden]="!waitForMongoObj"></div>
+                            </div>
+                            <div class="scrollbar" id="style-3" style="margin-top: 20px;">
+                                <div class="force-overflow">
+                                    <div class="col-md-3 col-sm-4 col-xs-6"
+                                         style="width: 100%;padding-left: 0px;padding-right: 0px;">
+                                        <div class="checkbox object01"
+                                             *ngFor="let salesObj of salesObjects; let i = index;">
+                                            <input id=checkbox{{i}} type="checkbox" [(ngModel)]="checkboxValues[i]"
+                                                   (change)="selectedSalesObjects(salesObj)">
+                                            <label for=checkbox{{i}}>
+                                                {{ salesObj }}
+                                            </label>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="loader" [hidden]="!waitForSalesObj"></div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                    <!--<popover-content #myPopover
+                                     title="Object Mapping"
+                                     [animation]="true"
+                                     class="mypopover"
+                                     [closeOnClickOutside]="true" >
+                        &lt;!&ndash;<b>Very</b> <span style="color: #C21F39">Dynamic</span> <span style="color: #00b3ee">Reusable</span>
+                        <b><i><span style="color: #ffc520">Popover With</span></i></b> <small>Html support</small>.&ndash;&gt;
+                        <viemapping> </viemapping>
+                    </popover-content>-->
+                    <!--<div class="action-button">
+                        <button [popover]="myPopover" [popoverCloseOnClickOutside]="true" >
+                           view mapping
+                        </button>-->
+                   <!-- <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog new-page">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"></button>
+                                    <h4 class="modal-title">Object Mapping</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <viewmapping [currentMappingObj]="currentMappingObj" (notify)="onnotify($event)" (save)="saveMapping()"></viewmapping>
+                                </div>
+                               &lt;!&ndash; <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>&ndash;&gt;
+                            </div>
+
+                        </div>
+
+
+                    </div>-->
+
+                    <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger">View Mapping</button>
+                    <button type="button" class="btn btn-danger" (click)="saveMapping()">Save</button>
+                   <!-- <button type="button" class="btn btn-danger" (click)="changeMapping()">change currentmapping</button>-->
+
+                </div>
+                <!-- /.col -->
+            </div>
+
+
+            <!-- PAGE CONTENT ENDS -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+</div>
+
+
+<!--<div class="container">
+    <h2>Modal Example</h2>
+    &lt;!&ndash; Trigger the modal with a button &ndash;&gt;
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+    &lt;!&ndash; Modal &ndash;&gt;
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog new-page">
+
+            &lt;!&ndash; Modal content&ndash;&gt;
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>-->

@@ -1,0 +1,173 @@
+<!--
+<div class="main-container ace-save-state" id="main-container">
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        &lt;!&ndash; PAGE CONTENT BEGINS &ndash;&gt;
+                        <div class="row">
+                            <div class="col-md-12" style="padding-right: 0px; padding-left: 0px;">
+                                <div class="container" style="margin-top: 20px;padding-left: 0px; padding-right: 0px;">
+                                    <div class="col-md-6">
+                                        <div class="row" style="margin-bottom: 10px;">
+                                            <div class="col-md-6 col-sm-6 col-xs-8"><h4>Client Configuration</h4></div>
+                                            <div class="col-md-6 col-sm-6 col-xs-4" style="text-align: right;">
+                                                <button type="button" class="btn btn-danger"
+                                                        (click)="clientConfigEdit()">Edit <i
+                                                        class="fa fa-pencil-square-o"></i></button>
+                                            </div>
+                                        </div>
+                                        <table class="table table-striped">
+                                            <tbody>
+                                            <tr>
+                                                <td>Server Name</td>
+                                                <td > {{clientconfig ? clientconfig.server_name : ''}}</td>
+
+                                            </tr>
+                                            &lt;!&ndash; <tr>
+                                                 <td>Username</td>
+                                                 <td> {{clientconfig.username}} </td>
+                                             </tr>
+                                             <tr>
+                                                 <td>password</td>
+                                                 <td> {{clientconfig.password}} </td>
+                                             </tr>&ndash;&gt;
+                                            <tr>
+                                                <td>Database Name</td>
+                                                <td> {{ clientconfig ? clientconfig.db : ''}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row" style="margin-bottom: 10px;">
+                                            <div class="col-md-6 col-sm-6 col-xs-8"><h4>Sales Configuration</h4></div>
+                                            <div class="col-md-6 col-sm-6 col-xs-4" style="text-align: right;">
+                                                <button type="button" class="btn btn-danger"
+                                                        (click)="salesConfigEdit()">Edit <i
+                                                        class="fa fa-pencil-square-o"></i></button>
+                                            </div>
+                                        </div>
+                                        <table class="table table-striped">
+                                            <tbody>
+                                            <tr>
+                                                <td>Salesforce Login</td>
+                                                <td> {{salesconfig ? salesconfig.salesforce_login : ''}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Username</td>
+                                                <td> {{salesconfig ? salesconfig.username : ''}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Password</td>
+                                                <td> {{salesconfig ? salesconfig.password : ''}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="action-button">
+                                    &lt;!&ndash; <button type="button" class="btn btn-danger">View Mapping</button>&ndash;&gt;
+                                    <button type="button" class="btn btn-danger">Proceed</button>
+                                </div>
+                            </div>
+                            &lt;!&ndash; /.col &ndash;&gt;
+                        </div>
+                        &lt;!&ndash; /.row &ndash;&gt;
+                        &lt;!&ndash; PAGE CONTENT ENDS &ndash;&gt;
+                    </div>
+                    &lt;!&ndash; /.col &ndash;&gt;
+                </div>
+                &lt;!&ndash; /.row &ndash;&gt;
+            </div>
+            &lt;!&ndash; /.page-content &ndash;&gt;
+        </div>
+    </div>
+    &lt;!&ndash; /.main-content &ndash;&gt;
+</div>
+
+
+-->
+
+
+
+
+<!--new design-->
+
+
+
+<header></header>
+
+<div class="container">
+    <div class="view-map-container">
+        <div class="mapping">
+            <div class="attribute_margin">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-6 col-sm-6 col-xs-8 client"><h5><i class="fa fa-user" aria-hidden="true"></i> Client Configuration</h5></div>
+                            <div class="col-md-6 col-sm-6 col-xs-4 edit-icon">
+                                <button type="button" class="btn btn-danger salesforce-button4">Edit <i class="fa fa-pencil-square-o"></i></button>
+                            </div>
+                        </div>
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <td><p class="sample">Server Name</p></td>
+                                <td><p class="sample">abcd</p></td>
+                            </tr>
+                            <tr>
+                                <td>Username</td>
+                                <td><p class="sample">abcd@gmail.com</p></td>
+                            </tr>
+                            <tr>
+                                <td>password</td>
+                                <td><p class="sample">abcd1234csdcsdcdcdcdcdcddc</p></td>
+                            </tr>
+                            <tr>
+                                <td>Database Name</td>
+                                <td><p class="sample">abcd1234csdcsdcdcdcdcdcddc</p></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-md-6 col-sm-6 col-xs-8 client"><h5><i class="fa fa-cloud" aria-hidden="true"></i> Salesforce Configuration</h5></div>
+                            <div class="col-md-6 col-sm-6 col-xs-4 edit-icon">
+                                <button type="button" class="btn btn-danger salesforce-button4">Edit <i class="fa fa-pencil-square-o"></i></button>
+                            </div>
+                        </div>
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <td><p class="sample">Server Name</p></td>
+                                <td><p class="sample">abcd</p></td>
+                            </tr>
+                            <tr>
+                                <td>Username</td>
+                                <td><p class="sample">abcd@gmail.com</p></td>
+                            </tr>
+                            <tr>
+                                <td>password</td>
+                                <td><p class="sample">abcd1234csdcsdcdcdcdcdcddc</p></td>
+                            </tr>
+                            <tr>
+                                <td>Database Name</td>
+                                <td><p class="sample">abcd1234csdcsdcdcdcdcdcddc</p></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="action-btn">
+            <button type="button" class="btn btn-default salesforce-button3" >Proceed</button>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,52 @@
+.middle-table{
+    width: 70%!important;
+}
+.left-table{
+    width: 20%!important;
+}
+.left-icon{
+    text-align: right;
+}
+.left-table,.middle-table, .right-table{
+    background-color: #fff;
+}
+.mongo-table{
+    margin-top: 20px;
+}
+
+/*
+.popover {
+    width: 100% !important;
+    top:0px !important;
+    left: 0px !important;
+}*/
+
+/*
+.popover-content {
+    color: red;
+    font-size: 10px;
+    max-width:100%!important;
+}*/
+
+/*.modal-content .popover.bottom {
+    margin-top: 10px;
+    top: 0px !important;
+    left: 1px !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
+}*/
+
+.new-page {
+    width: 100%!important;
+    margin: 30px auto;
+}
+.plusicon {
+    font-size: 20px;
+    margin-top: 5px;
+    vertical-align: -webkit-baseline-middle;
+}
+
+.title1 h4 {
+    text-align: center;
+}

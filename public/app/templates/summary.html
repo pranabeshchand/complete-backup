@@ -1,0 +1,132 @@
+<!--<header></header>-->
+<div class="container">
+    <div class="view-map-container">
+        <div class="mapping" style="padding-top: 0px">
+            <!--<div class="summary-title">
+                <h5>Summary</h5>
+            </div>-->
+            <div class="all-form" style="margin-top: 15px;text-align: left;padding: 20px;">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label" for="textinput">Name:</label>
+                        </div>
+                        <div class="col-md-5">
+                            <input id="textinput" type="text" name="mappingName" *ngIf="mappingObj && !mappingObj.name" [(ngModel)]="mappingName" class="form-control input-md" placeholder="Enter name for mapping..." (ngModelChange)="invalidName = validateMappingName($event)" required>
+                            <div *ngIf="mappingObj && mappingObj.name">{{mappingObj.name}}</div>
+                            <div *ngIf="invalidName" style="color: red">Name Already Exist.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label" for="textinput">Connection:</label>
+                        </div>
+                        <div class="col-md-5">{{userservice.UserDetails.username}}</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label" for="textinput">Object:</label>
+                        </div>
+                        <div class="col-md-5" *ngIf="mappingObj.mapping">{{mappingObj.mapping.object}}</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label">Schedule Task:</label>
+                        </div>
+                        <!--<div class="col-md-5 export-summary-btn">
+                            <button type="button" *ngIf="mappingObj && mappingObj.name" class="btn btn-default salesforce-button3" (click)="updateMapping(mappingObj.name)">Update</button>
+                            <button type="button" *ngIf="mappingObj && !mappingObj.name" class="btn btn-default salesforce-button3" (click)="saveNewMapping(dataservice.currentSalesObj)">Save</button>
+                        </div>-->
+                        <div class="col-md-10">
+                            <div class="row">
+                            <div class="col-sm-2" style="padding-left: 0px;">
+                                <select class="form-control" [(ngModel)]="schedule.scheduleType">
+                                    <option value="" selected>None</option>
+                                    <option value="Hourly">Hourly</option>
+                                    <option value="Daily">Daily</option>
+                                    <option value="Weekly">Weekly</option>
+                                    <option value="Monthly">Monthly</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3" *ngIf="schedule.scheduleType">
+                                <div class="col-sm-2" style=" padding: 7px; "><label>At:</label></div>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="time" [(ngModel)]="schedule.scheduleTime">
+                                </div>
+                            </div>
+                            <!--<label>Timezone:
+                                <input list="browsers" name="myBrowser" /></label>
+                            <datalist id="browsers">
+                                &lt;!&ndash;<option value="Chrome">
+                                <option value="Firefox">
+                                <option value="Internet Explorer">
+                                <option value="Opera">
+                                <option value="Safari">
+                                <option value="Microsoft Edge">&ndash;&gt;
+                            </datalist>-->
+                            <div class="col-sm-5" *ngIf="schedule.scheduleType">
+                                <!--<select class="form-control" [(ngModel)]="schedule.timezone">
+                                    <option *ngFor="let tz of timezones;" value= {{tz}} selected="currentTimeZone === tz"> {{tz}}</option>
+                                </select>-->
+
+                                <label>Timezone:
+                                    <input list="zone" name="TimeZone" /></label>
+                                <datalist id="zone">
+                                    <option *ngFor="let tz of timezones" value= {{tz}} selected="currentTimeZone === tz"> {{tz}}</option>
+                                </datalist>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-sm-5" style=" margin-top: 10px; padding-left: 0px;" *ngIf="schedule.scheduleType">
+                                <div class="col-sm-2" style=" padding: 7px;padding-left: 1px; "><label>Starting:</label></div>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="Date" min="{{today}}" [(ngModel)]="schedule.startDate">
+                                </div>
+                            </div>
+                            <div class="col-sm-7" style=" margin-top: 10px;" *ngIf="schedule.scheduleType">
+                                <div class="col-sm-2" style=" padding: 7px;padding-left: 1px; "><label>Ending:</label></div>
+                                <div class="col-sm-7">
+                                    <input class="form-control" type="Date" min="{{today}}" [(ngModel)]="schedule.endDate">
+                                </div>
+                                <div class="col-sm-2" (click)="endDate = ''" style="cursor: pointer; padding: 7px;">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <!-- <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label" for="textinput">Rows:</label>
+                        </div>
+                        <div class="col-md-5">{{dataservice.csvHeader.length}}</div>
+                    </div>
+                </div>-->
+               <!-- <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-5">
+                            <button type="button" *ngIf="mappingObj && mappingObj.name" class="btn btn-default salesforce-button3" (click)="updateMapping(mappingObj.name)">Update</button>
+                            <button type="button" *ngIf="mappingObj && !mappingObj.name" class="btn btn-default salesforce-button3" (click)="saveNewMapping(mappingName)" [disabled]="invalidName || !mappingName">Save</button>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="action-btn" style="float: right;">
+    <button type="button" class="btn btn-default salesforce-button3" (click)="dataservice.step = dataservice.step - 1">Previous</button>
+    <button type="button" *ngIf="mappingObj && mappingObj.name" class="btn btn-default salesforce-button3" (click)="updateMapping(mappingObj.name)">Update</button>
+    <button type="button" *ngIf="mappingObj && !mappingObj.name" class="btn btn-default salesforce-button3" (click)="saveNewMapping(mappingName)" [disabled]="invalidName || !mappingName">Save</button>
+</div>

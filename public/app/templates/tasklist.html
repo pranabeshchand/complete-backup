@@ -1,0 +1,94 @@
+<header></header>
+<!--<div class="container middle">
+    <div class="view-map-container">
+        <h2>Task List</h2>
+
+        <input type="text" id="myInput"  [(ngModel)]="term" placeholder="Search for names.." title="Type in a name">
+
+        <table id="myTable">
+            <tr *ngFor = "let task of tasks.taskArray |filter:term">
+                <td>{{task.name}}</td>
+                <td>{{task.type}}</td>
+            </tr>
+
+        </table>
+        </div>
+    </div>-->
+
+<div class="container middle">
+    <div class="view-map-container">
+        <div class="export_area">
+            <div class="row">
+                <div class="col-md-3 select-margin">
+                    <div class="input-group stylish-input-group">
+                        <input type="text" class="form-control"  placeholder="Quick find...." [(ngModel)]="term"  >
+                            <span class="input-group-addon">
+                                <button type="submit">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <ul class="nav nav-tabs">
+                        <li [ngClass]="{'active': currentTab == 'all'}"><a  (click) = "taskListFilter('all')">All</a></li>
+                        <li [ngClass]="{'active': currentTab == 'import'}"><a  (click) = "taskListFilter('import')"><span class="glyphicon glyphicon-import"></span> Imports</a></li>
+                        <li [ngClass]="{'active': currentTab == 'export'}"><a  (click) = "taskListFilter('export')"><span class="glyphicon glyphicon-export"></span> Exports</a></li>
+                      <!--  <li><a href="#"><img style="width: 13px;" src="/app/images/deletes.svg"> Deletes</a></li>
+                        <li><a href="#"><img style="width: 13px;" src="/app/images/scheduled.svg"> Scheduled</a></li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div  *ngIf="tasks.taskArray?.length > 0">
+        <div *ngFor = "let task of tasks.taskArray |filter:term; let i= index">
+        <div class="all-exports">
+            <div class="row">
+                <div class="col-md-1">
+                    <div class="count">{{i + 1}}</div>
+                </div>
+                <div class="col-md-11">
+                    <div class="left-account-exports">
+                        <h5>{{task.name}}</h5>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="icons">
+                                    <div class="row">
+                                        <div class="col-md-1 col-sm-1 col-xs-1"><a (click)="editTask(task)"><img src="/app/images/edit.svg"></a></div>
+                                        <div class="col-md-1 col-sm-1 col-xs-1"><a href="#"><img src="/app/images/run.svg"></a></div>
+                                        <!--<div class="col-md-1 col-sm-1 col-xs-1"><a href="#"><img src="/app/images/scheduled1.svg"></a></div>-->
+                                        <div class="col-md-1 col-sm-1 col-xs-1"><a (click)="deleteTask(task._id)"><img  src="/app/images/deletes1.svg"></a></div>
+                                        <!--<div class="col-md-1 col-sm-1 col-xs-1"><a href="#"><img src="/app/images/clone.svg"></a></div>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <p><!--Task Run 9479973:--> <!--<a href="#">143 successes</a>--></p>
+                            </div>
+                            <div class="col-md-4 run-time">
+                                <!--<p>last run: a month ago</p>-->
+                            </div>
+                        </div>
+                        <div class="created">
+                            <p>created on {{task.mapping.updatedat | date}} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div></div>
+        </div>
+        <div *ngIf="tasks.taskArray?.length == 0">
+            <div class="all-exports">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-11">
+                        <div class="left-account-exports">
+                    <h5>No Task</h5>
+                            </div></div>
+                </div>
+            </div></div>
+
+    </div>
+</div>

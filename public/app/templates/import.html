@@ -1,0 +1,61 @@
+<header></header>
+<div class="container middle">
+    <div class="view-map-container">
+        <!--<div class="breadcrumb1 container">-->
+            <!--<a [ngClass]="dataservice.step == 1 ? 'active': ''"><span>Connection & Object</span></a>-->
+            <!--<a [ngClass]="dataservice.step == 2 ? 'active': ''"><span>File</span></a>-->
+            <!--<a [ngClass]="dataservice.step == 3 ? 'active' : ''"><span>Mapping</span></a>-->
+            <!--<a [ngClass]="dataservice.step == 4 ? 'active' : ''"><span>Import Summary</span></a>-->
+        <!--</div>-->
+
+        <div class="stepwizard">
+            <div class="stepwizard-row">
+                <div class="stepwizard-step">
+                    <a [ngClass]="dataservice.step == 1 ? 'active': ''">
+                        <button type="button" class="btn-circle1">
+                            <div class="btn btn-default btn-circle"><span class="glyphicon glyphicon-object-align-horizontal"></span></div>
+                        </button></a>
+                    <!--<p>Step 1</p>-->
+                    <h5>Connection & Object</h5>
+                </div>
+                <div class="stepwizard-step">
+                    <a [ngClass]="dataservice.step == 2 ? 'active': ''">
+                        <button type="button" class="btn-circle1">
+                            <div class="btn btn-default btn-circle"><span class="glyphicon glyphicon-file"></span></div>
+                        </button>
+                    </a>
+                    <!--<p>Step 2</p>-->
+                    <h5>Source</h5>
+                </div>
+                <div class="stepwizard-step">
+                    <a [ngClass]="dataservice.step == 3 ? 'active': ''">
+                        <button type="button" class="btn-circle1" disabled="disabled">
+                            <div class="btn btn-default btn-circle"><span class="glyphicon glyphicon-transfer"></span></div>
+                        </button>
+                    </a>
+                    <!--<p>Step 3</p>-->
+                    <h5>Mapping</h5>
+                </div>
+                <div class="stepwizard-step">
+                    <a [ngClass]="dataservice.step == 4 ? 'active': ''">
+                        <button type="button" class="btn-circle1" disabled="disabled">
+                            <div class="btn btn-default btn-circle"><span class="glyphicon glyphicon-open-file"></span></div>
+                        </button>
+                    </a>
+                    <!--<p>Step 4</p>-->
+                    <h5>Import Summary</h5>
+                </div>
+            </div>
+        </div>
+
+        <viewmapping *ngIf = "dataservice.step == 1"></viewmapping>
+        <cloudsharing *ngIf = "dataservice.step == 2"></cloudsharing>
+        <attribmapping *ngIf = "dataservice.step == 3"></attribmapping>
+        <importsummary *ngIf = "dataservice.step == 4"></importsummary>
+
+        <!--<div class="action-btn" style="float: right;">
+            <button type="button" class="btn btn-default salesforce-button3" [hidden] = "step == 1" (click)="step = step - 1">Previous</button>
+            <button type="button" class="btn btn-default salesforce-button3" [hidden] = "step == 3"(click)="step = step + 1">Next</button>
+        </div>-->
+    </div>
+</div>

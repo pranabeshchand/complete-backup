@@ -1,0 +1,168 @@
+[
+  {
+    "dataType": "string",
+    "options": [
+      {
+        "filterName": "equals",
+        "value": "fieldName = 'fieldValue'"
+      },
+      {
+        "filterName": "not equals",
+        "value": "fieldName != 'fieldValue'"
+      },
+      {
+        "filterName": "starts with",
+        "value": "fieldName = 'fieldValue%'"
+      },
+      {
+        "filterName": "ends with",
+        "value": "fieldName = '%fieldValue'"
+      },
+      {
+        "filterName": "contains",
+        "value": "fieldName LIKE '%fieldValue%'"
+      },
+      {
+        "filterName": "does not contain",
+        "value": "(NOT fieldName LIKE '%fieldValue%')"
+      },
+      {
+        "filterName": "is empty",
+        "value": "fieldName = null"
+      },
+      {
+        "filterName": "is not empty",
+        "value": "fieldName != null"
+      },
+      {
+        "filterName": "like",
+        "value": "fieldName LIKE 'fieldValue'"
+      },
+      {
+        "filterName": "not like",
+        "value": "(NOT fieldName LIKE 'fieldValue')"
+      }
+    ]
+  },
+  {
+    "dataType": "boolean",
+    "options": [
+      {
+        "filterName": "=",
+        "value": "fieldName = fieldValue"
+      },
+      {
+        "filterName": "!=",
+        "value": "fieldName != fieldValue"
+      }
+    ]
+  },
+  {
+    "dataType": "reference",
+    "options": [
+      {
+        "filterName": "=",
+        "value": "fieldName = 'fieldValue'"
+      },
+      {
+        "filterName": "!=",
+        "value": "fieldName != 'fieldValue'"
+      },
+      {
+        "filterName": "is empty",
+        "value": "fieldName = null"
+      },
+      {
+        "filterName": "is not empty",
+        "value": "fieldName != null"
+      }
+    ]
+  },
+  {
+    "dataType": "picklist",
+    "options": [
+      {
+        "filterName": "=",
+        "value": "fieldName = fieldValue"
+      },
+      {
+        "filterName": "!=",
+        "value": "fieldName != fieldValue"
+      },
+      {
+        "filterName": "is empty",
+        "value": "fieldName = null"
+      },
+      {
+        "filterName": "is not empty",
+        "value": "fieldName != null"
+      }
+    ]
+  },
+  {
+    "dataType": "int",
+    "options": [
+      {
+        "filterName": "=",
+        "value": "fieldName = fieldValue"
+      },
+      {
+        "filterName": "!=",
+        "value": "fieldName != fieldValue"
+      },
+      {
+        "filterName": ">",
+        "value": "fieldName > fieldValue"
+      },
+      {
+        "filterName": "<",
+        "value": "fieldName < fieldValue"
+      },
+      {
+        "filterName": ">=",
+        "value": "fieldName >= fieldValue"
+      },
+      {
+        "filterName": "<=",
+        "value": "fieldName <= fieldValue"
+      },
+      {
+        "filterName": "is empty",
+        "value": "fieldName = null"
+      },
+      {
+        "filterName": "is not empty",
+        "value": "fieldName != null"
+      }
+    ]
+  },
+  {
+    "dataType": "date",
+    "options": [
+      {
+        "filterName": ">",
+        "value": "fieldName > fieldValue"
+      },
+      {
+        "filterName": "<",
+        "value": "fieldName < fieldValue"
+      },
+      {
+        "filterName": ">=",
+        "value": "fieldName >= fieldValue"
+      },
+      {
+        "filterName": "<",
+        "value": "fieldName <= fieldValue"
+      },
+      {
+        "filterName": "is empty",
+        "value": "fieldName = null"
+      },
+      {
+        "filterName": "is not empty",
+        "value": "fieldName != null"
+      }
+    ]
+  }
+]

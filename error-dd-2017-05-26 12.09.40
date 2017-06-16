@@ -1,0 +1,18 @@
+[
+  {
+    "error": {
+      "RequiredField": "Required Fields are missing Name,SobjectType,IsActive"
+    }
+  },
+  {
+    "error": {
+      "RequiredField": "Required Fields are missing Name,SobjectType,IsActive"
+    }
+  },
+  {
+    "error": "REQUIRED_FIELD_MISSINGName,Email__c"
+  },
+  {
+    "error": "REQUIRED_FIELD_MISSINGName,Email__c"
+  }
+]

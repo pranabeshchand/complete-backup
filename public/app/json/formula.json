@@ -1,0 +1,162 @@
+[
+  {
+    "categories": [
+      {
+        "name": "Date&Time",
+        "type": "datetime",
+        "options": [
+          {
+            "expressionValue": "CURRENTDATE",
+            "xpathExpression": "currentDate()",
+            "displayExpression": "CURRENTDATE()"
+          },
+          {
+            "expressionValue": "CURRENTDATETIME",
+            "xpathExpression": "currentDateTime()",
+            "displayExpression": "CURRENTDATETIME()"
+          },
+          {
+            "expressionValue": "CURRENTTIME",
+            "xpathExpression": "currentTime()",
+            "displayExpression": "CURRENTTIME()"
+          },
+          {
+            "expressionValue": "YEARSFROMDURATION",
+            "xpathExpression": "yearsFromDuration(duration)",
+            "displayExpression": "YEARSFROMDURATION(duration)"
+          },
+          {
+            "expressionValue": "DAYSFROMDURATION",
+            "xpathExpression": "daysFromDuration(duration)",
+            "displayExpression": "DAYSFROMDURATION(duration)"
+          },
+          {
+            "expressionValue": "HOURSFROMDURATION",
+            "xpathExpression": "hoursFromDuration(duration)",
+            "displayExpression": "HOURSFROMDURATION(duration)"
+          },
+          {
+            "expressionValue": "MINUTESFROMDURATION",
+            "xpathExpression": "minutesFromDuration(duration)",
+            "displayExpression": "MINUTESFROMDURATION(duration)"
+          },
+          {
+            "expressionValue": "SECONDSFROMDURATION",
+            "xpathExpression": "secondsFromDuration(duration)",
+            "displayExpression": "SECONDSFROMDURATION(duration)"
+          },
+          {
+            "expressionValue": "HOURSFROMTIME",
+            "xpathExpression": "hoursFromTime(time)",
+            "displayExpression": "HOURSFROMTIME(time)"
+          },
+          {
+            "expressionValue": "MINUTESFROMTIME",
+            "xpathExpression": "minutesFromTime(time)",
+            "displayExpression": "MINUTESFROMTIME(time)"
+          },
+          {
+            "expressionValue": "SECONDSFROMTIME",
+            "xpathExpression": "secondsFromTime(time)",
+            "displayExpression": "SECONDSFROMTIME(time)"
+          }
+        ]
+      },
+      {
+        "name": "Math",
+        "type": "int",
+        "options": [
+          {
+            "expressionValue": "ABS",
+            "xpathExpression": "abs(number)",
+            "displayExpression": "ABS(number)"
+          },
+          {
+            "expressionValue": "CIELING",
+            "xpathExpression": "ceiling(number)",
+            "displayExpression": "CEILING(number)"
+          },
+
+          {
+            "expressionValue": "FLOOR",
+            "xpathExpression": "floor(number)",
+            "displayExpression": "FLOOR(number)"
+          },
+
+          {
+            "expressionValue": "MAX",
+            "xpathExpression": "max(number, number, ...)",
+            "displayExpression" : "(number, number, ...)"
+          },
+          {
+            "expressionValue": "MIN",
+            "xpathExpression": "min(number, number, ...)",
+            "displayExpression": "MIN(number, number, ...)"
+
+          },
+          {
+            "expressionValue": "MOD",
+            "xpathExpression": "mod(number, divisor)",
+            "displayExpression": "MOD(number, divisor)"
+          },
+          {
+            "expressionValue": "ROUND",
+            "xpathExpression": "round(number, num_digits)",
+            "displayExpression": "ROUND(number, num_digits)"
+          },
+          {
+            "expressionValue": "SUM",
+            "xpathExpression": "sum(number, number, ...)",
+            "displayExpression": "SUM(number, number, ...)"
+          }
+        ]
+      },
+      {
+        "name": "Text",
+        "type": "string",
+        "options": [
+          {
+            "expressionValue": "LOWERCASE",
+            "xpathExpression": "lowercase",
+            "displayExpression":"LOWERCASE(text)"
+          },
+          {
+            "expressionValue": "UPPERCASE",
+            "xpathExpression": "uppercase(text)",
+            "displayExpression":"UPPERCASE(text)"
+          },
+          {
+            "expressionValue": "STRINGLENGTH",
+            "xpathExpression": "stringLength(text)",
+            "displayExpression":"STRINGLENGTH(text)"
+          },
+          {
+            "expressionValue": "REVERSE",
+            "xpathExpression": "reverse(text)",
+            "displayExpression":"REVERSE(text)"
+          },
+          {
+            "expressionValue": "STARTSWITH",
+            "xpathExpression": "startsWith(text)",
+            "displayExpression":"STARTSWITH(text)"
+          },
+          {
+            "expressionValue": "SUBSTRING",
+            "xpathExpression": "substring(text, startIndex, endIndex)",
+            "displayExpression":"SUBSTRING(text, startIndex, endIndex)"
+          },
+          {
+            "expressionValue": "ENDSWITH",
+            "xpathExpression": "endsWith(text)",
+            "displayExpression":"ENDSWITH(text)"
+          },
+          {
+            "expressionValue": "CONTAINS",
+            "xpathExpression": "contains(text)",
+            "displayExpression":"CONTAINS(text)"
+          }
+        ]
+      }
+    ]
+  }
+]

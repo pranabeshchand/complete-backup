@@ -1,0 +1,37 @@
+.form-signin{
+    max-width: 420px!important;
+    padding: 30px 38px 66px;
+    margin: 0 auto;
+    border: 1px solid #cccccc;
+}
+.input-group{
+    height: 45px;
+    margin-bottom: 15px;
+    border-radius: 0px;
+    color: #60B99A;
+}
+.form-control{
+    height: 45px;
+    color: #60B99A;
+}
+.input-group:hover span i{
+    color: #60B99A;
+}
+.btn-block{
+    border-radius: 0px;
+    margin-top: 25px;
+    background-color: #e64545;
+    border: none;
+}
+.btn-block:hover{
+    background-color: #bb3434;
+}
+.bol{
+    position: relative;
+    margin-top: -40px;
+    color: #60B99A;
+}
+
+.login-logo{
+    width: 75%;
+}

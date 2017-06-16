@@ -1,0 +1,37 @@
+<!--<div role="tabpanel" class="tab-pane" id="tab4" *ngIf="activePanel == 'googledrive'" (click)="initPicker()">-->
+    <div class="form-group col-sm-8">
+        <select *ngIf="googleDriveAccountDetails && googleDriveAccountDetails.displayName" class="form-control">
+            <option>{{googleDriveAccountDetails.displayName}} - Google Drive</option>
+        </select>
+
+        <select *ngIf="googleDriveAccountDetails && !googleDriveAccountDetails.displayName" disabled class="form-control">
+            <option selected>Please create a connection...</option>
+        </select>
+    </div>
+
+    <div class="form-group col-sm-1 cloud-btn">
+        <span id="google-drive" (click)="initPicker()"><i class="fa fa-plus"></i></span>
+    </div>
+    <div class="form-group col-sm-1 cloud-btn" *ngIf="googleDriveAccountDetails && googleDriveAccountDetails.displayName">
+        <span id="google-drive-logout" (click)="signOutGoogleDrive()"><i class="fa fa-trash-o"></i></span>
+    </div>
+    <!--<div class="form-group col-sm-1 cloud-btn" *ngIf="googleDriveAccountDetails && googleDriveAccountDetails.displayName">
+        <span>
+            <label for="csvGoogleFile" style="cursor: pointer;"><i class="fa fa-cloud-upload"></i></label>
+            <input type="file" id="csvGoogleFile" (change)="uploadGoogleDrive($event)" accept=".csv" style="display: none"/>
+        </span>
+    </div>-->
+
+    <div class="folder-list col-sm-12" *ngIf="cloudservice.googleDriveFolderLevel.length" style="margin: 10px; ">
+        <span (click)="displayChild(cloudservice.googleDriveFolderLevel[0])"><img src="app/images/googledrive.png" style="height:20px;"/></span>
+        <span *ngFor="let level of cloudservice.googleDriveFolderLevel; let i=index" (click)="displayChild(level)"><i class="fa fa-chevron-right" *ngIf="level.title">&nbsp;</i><a *ngIf="level.title" class="folder-link">{{level.title}}</a>&nbsp;</span>
+    </div>
+
+    <div *ngIf="googleDriveFiles.length" class="col-sm-12 inner-box">
+        <ul tabindex="1" *ngFor="let file of googleDriveFiles; let i=index">
+            <div class="folder-list" *ngIf="file.mimeType == 'application/vnd.google-apps.folder'" (click)="displayChild(file)"><i class="fa fa-folder-o"></i>&nbsp;&nbsp;{{file.title}}</div>
+            <div *ngIf="file.mimeType != 'application/vnd.google-apps.folder'" (click)="readGoogleDrive(file)"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;{{file.title}} <!--<a class="fa fa-cloud-download" [href]="file.url" download="{{file.path.substring(file.path.lastIndexOf('/')+1)}}"></a>--></div>
+        </ul>
+    </div>
+<!--
+</div>-->
